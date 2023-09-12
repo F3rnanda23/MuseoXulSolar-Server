@@ -3,10 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST,DB_DEPLOY
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/xulsolar`, {
+const sequelize = new Sequelize(DB_DEPLOY, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -37,10 +37,10 @@ const { Actividades, Exposiciones, Obras, Patrocinios, Usuario } = sequelize.mod
 Obras.belongsToMany(Exposiciones,{ through: "Expo-Obras" , timestamps: false })
 Exposiciones.belongsToMany(Obras,{ through: "Expo-Obras" , timestamps: false })
 // Product.hasMany(Reviews);
-Usuario.hasMany(Actividades, {foreignKey: id})
-Usuario.hasMany(Obras, {foreignKey: id})
-Usuario.hasMany(Exposiciones,{foreignKey: id})
-Usuario.hasMany(Patrocinios, {foreignKey: id})
+Usuario.hasMany(Actividades, {foreignKey:"UsuarioXActividades"})
+Usuario.hasMany(Obras, {foreignKey:"UsuarioXObras"})
+Usuario.hasMany(Exposiciones,{foreignKey:"UsuarioXExposiciones"})
+Usuario.hasMany(Patrocinios, {foreignKey:"UsuarioXPatrocinios"})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
