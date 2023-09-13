@@ -18,17 +18,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      image: {
-        type:DataTypes.STRING,
-        allowNull:false
-      },
       description: {
         type:DataTypes.JSON,
         allowNull:false,
-      },
-      autor: {
-        type: DataTypes.STRING,
-        allowNull: false,
       },
     },
     { 

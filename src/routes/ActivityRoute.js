@@ -5,7 +5,7 @@ const routerActivity = Router();
 
 routerActivity.get("/", allActivityHandler);
 routerActivity.post("/", createActivityHandler);
-routerActivity.put("/", putActivityHandler);
+routerActivity.put("/:id", putActivityHandler);
 routerActivity.get("/:id",putActivityHandler)
 
 
