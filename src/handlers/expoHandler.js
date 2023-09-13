@@ -3,9 +3,9 @@ const {postExpo, allExpo, idExpo, putExpo} = require("../controllers/exposicione
 
 
 const createExpoHandler = async(req,res)=>{
-    const {date,name,image,description,autor} = req.body;
+    const {date,name,description} = req.body;
     try {
-        const exposiciones = await postExpo({date,name,image,description,autor});
+        const exposiciones = await postExpo({date,name,description});
         res.status(200).json(exposiciones)
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -34,16 +34,14 @@ const idExpoHandler = async(req, res)=>{
 
 const updateExpoHandler = async (req, res) => {
     const { id } = req.params;
-    const { date, name, image, description, autor } = req.body;
+    const { date, name, description} = req.body;
   
     try {
       const exposicionActualizada = await putExpo({
         id,
         date,
         name,
-        image,
         description,
-        autor,
       });
   
       res.status(200).json(exposicionActualizada);
