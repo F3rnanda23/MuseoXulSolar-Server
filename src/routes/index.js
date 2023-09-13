@@ -9,7 +9,7 @@ const router = Router();
 router.use("/actividades", routerActivity);
 router.use("/exposiciones", routerExposiciones );
 router.use("/obras", ObrasRoute);
-router.use("/patrocionios", PatrociniosRoute);
+router.use("/patrocinios", PatrociniosRoute);
 router.use("/usuario", UsuarioRoute);
 
 module.exports = router;
