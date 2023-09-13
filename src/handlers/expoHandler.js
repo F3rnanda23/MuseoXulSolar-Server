@@ -1,4 +1,4 @@
-const {postExpo, allExpo, idExpo, putExpo} = require("../controllers/exposicionesController");
+const {postExpo, allExpo, idExpo, putExpo, deleteLogic, restoreLogic} = require("../controllers/exposicionesController");
 
 
 
@@ -50,7 +50,27 @@ const updateExpoHandler = async (req, res) => {
     }
 }
 
+const deleteExpo = async (req, res) => {
+    const { id } = req.params
+    try {
+        const deletedExpo = await deleteLogic(id);
+        res.status(200).json(deletedExpo);
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+};
+
+const restoreExpo = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const restauredLogic = await restoreLogic(id);
+        res.status(200).json(restauredLogic);
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
+
 
 module.exports = {
-    createExpoHandler, allExpoHandler, idExpoHandler, updateExpoHandler
+    createExpoHandler, allExpoHandler, idExpoHandler, updateExpoHandler, deleteExpo, restoreExpo
 }
