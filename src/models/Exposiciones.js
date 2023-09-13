@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     "Exposiciones",
     {
       id: {
-        type:DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
@@ -19,12 +19,13 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       description: {
-        type:DataTypes.JSON,
-        allowNull:false,
+        type: DataTypes.JSON,
+        allowNull: false,
       },
     },
-    { 
-        timestamps: false,
-     }
+    {
+      paranoid: true,
+      timestamps: false,
+    }
   );
 };
