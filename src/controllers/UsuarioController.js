@@ -15,8 +15,20 @@ const createUsuario = async ({ birthday, name, phone, password, admin }) => {
         admin
     });
     return postUsuario;
+};
+
+const deleteLogicUser = async (id) => {
+    const deleteUser = await Usuario.destroy({ where: { id } });
+    return deleteUser;
+};
+
+const restoreLogicUser = async (id) => {
+    const restores = await Usuario.restore({ where: { id } });
+    return restores;
 }
 
 module.exports = {
-    createUsuario
+    createUsuario,
+    deleteLogicUser,
+    restoreLogicUser
 }

@@ -11,6 +11,7 @@ const routerActivity = Router();
 
 routerActivity.get("/", allActivityHandler);
 routerActivity.post("/", createActivityHandler);
+//* Rutas por /:id
 routerActivity.put("/:id", putActivityHandler);
 routerActivity.get("/:id", putActivityHandler);
 routerActivity.delete("/:id", deleteActivity);
