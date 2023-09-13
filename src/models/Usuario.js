@@ -14,11 +14,11 @@ module.exports = (sequelize) => {
       },
       birthday: {
         type: DataTypes.DATE,
-        allowNull:false,
+        allowNull: false,
       },
       name: {
-        type:DataTypes.STRING,
-        allowNull:false,
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
@@ -29,11 +29,12 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       admin: {
-        type:DataTypes.BOOLEAN,
-        allowNull:false,
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
     {
+      paranoid: true,
       timestamps: false,
     }
   );
