@@ -1,9 +1,9 @@
 const {Exposiciones} = require("../db")
 
-const postExpo = async({date,name,image,description,autor})=>{
+const postExpo = async({date,name,description})=>{
     const found = await Exposiciones.findOne({where: {name}})
     if(found){throw new Error("The expo already exist")}
-    const createExpo = await Exposiciones.create({date,name,image,description,autor});
+    const createExpo = await Exposiciones.create({date,name,description});
     return createExpo
 }
 
@@ -17,7 +17,7 @@ const idExpo = async(id)=>{
     return found
 }
 
-const putExpo = async ({ id, date, name, image, description, autor }) => {
+const putExpo = async ({ id, date, name, description}) => {
     const existingExpo = await Exposiciones.findOne({ where: { id } });
   
     if (!existingExpo) {
@@ -26,9 +26,7 @@ const putExpo = async ({ id, date, name, image, description, autor }) => {
   
     existingExpo.date = date;
     existingExpo.name = name;
-    existingExpo.image = image;
     existingExpo.description = description;
-    existingExpo.autor = autor;
   
     await existingExpo.save();
   
