@@ -5,30 +5,30 @@ module.exports = (sequelize) => {
     "Actividades",
     {
       id: {
-        type:DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
       date: {
-        type:DataTypes.DATE,
-        allowNull:false,
+        type: DataTypes.DATE,
+        allowNull: false,
       },
       name: {
-        type:DataTypes.STRING,
-        allowNull: false, 
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       image: {
-        type:DataTypes.STRING,
-        allowNull:false,
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       description: {
-        type:DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
       },
     },
     {
-      timestamps: false,
+      paranoid: true,
     }
   );
 };
