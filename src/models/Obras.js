@@ -8,8 +8,8 @@ module.exports = (sequelize) =>{
           autoIncrement: true,
           allowNull: false,
         },
-        date: {
-          type: DataTypes.DATE,
+        year: {
+          type: DataTypes.INTEGER,
           allowNull: false,
         },
         name: {
@@ -19,14 +19,6 @@ module.exports = (sequelize) =>{
         image: {
           type:DataTypes.STRING,
           allowNull:false
-        },
-        description: {
-          type:DataTypes.JSON,
-          allowNull:false,
-        },
-        autor: {
-          type: DataTypes.STRING,
-          allowNull: false,
         },
       },
       { 
