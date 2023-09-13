@@ -32,11 +32,22 @@ const putExpo = async ({ id, date, name, description}) => {
   
     return existingExpo;
 }
+const deleteLogic = async(id)=>{
+    const deleted = await Exposiciones.destroy({where:{id}});
+    return deleted;
+  }
+  
+const restoreLogic = async(id)=>{
+    const restored = await Exposiciones.restore({where: {id}});
+    return restored;
+  }
 
 
 module.exports = {
     idExpo,
     postExpo,
     allExpo,
-    putExpo
+    putExpo,
+    deleteLogic,
+    restoreLogic
 };
