@@ -17,11 +17,11 @@ module.exports = (sequelize) =>{
             allowNull:false,
         },
         mail:{
-            type:DataTypes.TEXT,
+            type:DataTypes.STRING,
             allowNull:false,
         },
         phone:{
-            type:DataTypes.INTEGER,
+            type:DataTypes.STRING,
             allowNull:false
         }
     },

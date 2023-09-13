@@ -2,10 +2,10 @@
     "data":[
         {
             "name": "Genaro",
-            "Fecha de nacimiento":"12-09-18",
-            "Telefono": "0810-999-8888",
-            "Password": "pepito123",
-            "Admin": true
+            "birthday":"12-09-18",
+            "phone": "0810-999-8888",
+            "password": "pepito123",
+            "admin": true
         }
     ]
 }
