@@ -1,0 +1,11 @@
+{
+    "data":[
+        {
+            "name": "Genaro",
+            "Fecha de nacimiento":"12-09-18",
+            "Telefono": "0810-999-8888",
+            "Password": "pepito123",
+            "Admin": true
+        }
+    ]
+}
