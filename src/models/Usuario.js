@@ -14,14 +14,14 @@ module.exports = (sequelize) => {
       },
       birthday: {
         type: DataTypes.DATE,
-        allowNull:false,
+        allowNull: false,
       },
       name: {
-        type:DataTypes.STRING,
-        allowNull:false,
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true,
       },
       password: {
@@ -29,12 +29,12 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       admin: {
-        type:DataTypes.BOOLEAN,
-        allowNull:false,
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
     {
-      timestamps: false,
+      paranoid: true,
     }
   );
 };
