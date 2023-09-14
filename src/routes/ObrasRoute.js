@@ -1,5 +1,9 @@
-const {Router} = require("express");
-const {getObrasHandler, getObrasIdHandler, postObrasHandler} = require("../handlers/obrasHandler");
+const { Router } = require("express");
+const {
+    getObrasHandler,
+    getObrasIdHandler,
+    postObrasHandler
+} = require("../handlers/obrasHandler.js");
 
 const routerObras = Router();
 

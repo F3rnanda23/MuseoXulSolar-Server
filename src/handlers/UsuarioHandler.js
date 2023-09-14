@@ -1,8 +1,21 @@
 const {
     createUsuario,
     deleteLogicUser,
-    restoreLogicUser
-} = require("../controllers/UsuarioController");
+    restoreLogicUser,
+    allUser,
+    editUser
+} = require("../controllers/UsuarioController.js");
+
+
+
+const bringUsers = async (req, res) => {
+    try {
+        const users = await allUser();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
 
 const loginUserHandler = async (req, res) => {
 
@@ -36,8 +49,21 @@ const restoreUserLogic = async (req, res) => {
     }
 }
 
+const editarUsuario = async(req,res)=>{
+    const {id} = req.params;
+    const { name, birthday, phone, password, admin } = req.body;
+    try {
+        const edit = editUser({id,name, birthday, phone, password, admin });
+        res.status(200).json(edit);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+}
+
 module.exports = {
     loginUserHandler,
     deleteUserLogic,
-    restoreUserLogic
+    restoreUserLogic,
+    bringUsers,
+    editarUsuario
 }

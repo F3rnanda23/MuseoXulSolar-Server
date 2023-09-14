@@ -1,4 +1,4 @@
-const { Obras } = require ("../db");
+const { Obras } = require("../db.js");
 
 const getObras = async () => {
     try {
@@ -16,27 +16,11 @@ const getObrasId = async (idObra) => {
         console.log("Error en getObrasId:", error.message);
     }
 };
-const postObras = async (bodyObra) => {
-    try {
-        let obraCreada = await Obras.findOrCreate({
-            where: {name: bodyObra.name },
-            defaults: {
-                year: bodyObra.year,
-                name: bodyObra.name,
-                image: bodyObra.image,
-                usuarioXObras: bodyObra.usuarioId
-            },
-        }).then (([obra, creado])=> {
-            if(creado){
-                return obra;
-            } else {
-                return;
-            }
-        });
-        return obraCreada
-    } catch (error) {
-        console.log("Error en postObras:", error.message);
-    }
+const postObras = async ({date,name,year,image}) => {
+    const found = await Obras.findOne({ where: { name } })
+    if (found) { throw new Error("The obra already exist") }
+    const createObra = await Obras.create({ date, name, year, image });
+    return createObra
 };
 
 module.exports = {
