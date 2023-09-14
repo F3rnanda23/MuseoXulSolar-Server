@@ -1,5 +1,11 @@
-const {Router} = require("express");
-const {loginUserHandler,deleteUserLogic,restoreUserLogic,bringUsers, editarUsuario} = require("../handlers/UsuarioHandler");
+const { Router } = require("express");
+const {
+    loginUserHandler,
+    deleteUserLogic,
+    restoreUserLogic,
+    bringUsers,
+    editarUsuario
+} = require("../handlers/UsuarioHandler.js");
 const routerUsuario = Router();
 
 routerUsuario.get("/", bringUsers);

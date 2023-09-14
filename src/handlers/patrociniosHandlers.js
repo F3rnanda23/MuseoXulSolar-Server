@@ -4,7 +4,7 @@ const {
   putPatrocinios,
   deletePatrocinios,
   restorePatricinios
-} = require("../controllers/patrociniosControllers");
+} = require("../controllers/patrociniosControllers.js");
 
 const postPatrociniosHandler = async (req, res) => {
   const { name, image, mail, phone } = req.body;

@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const routerActivity = require("./ActivityRoute");
-const routerExposiciones = require("./ExposicionesRoute");
-const ObrasRoute = require("./ObrasRoute");
-const PatrociniosRoute = require("./PatrociniosRoute");
-const routerUsuario = require("./UsuarioRoute");
+const routerActivity = require("./ActivityRoute.js");
+const routerExposiciones = require("./ExposicionesRoute.js");
+const ObrasRoute = require("./ObrasRoute.js");
+const PatrociniosRoute = require("./PatrociniosRoute.js");
+const routerUsuario = require("./UsuarioRoute.js");
 const router = Router();
 
 router.use("/actividades", routerActivity);
