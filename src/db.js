@@ -33,9 +33,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Actividades, Exposiciones, Obras, Patrocinios, Usuario } = sequelize.models
 
 // Aca vendrian las relaciones
-// Relacion Muchos a Muchos..
-Obras.belongsToMany(Exposiciones,{ through: "Expo-Obras" , timestamps: false })
-Exposiciones.belongsToMany(Obras,{ through: "Expo-Obras" , timestamps: false })
 // Product.hasMany(Reviews);
 Usuario.hasMany(Actividades, {foreignKey:"UsuarioXActividades"})
 Usuario.hasMany(Obras, {foreignKey:"UsuarioXObras"})
