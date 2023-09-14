@@ -7,7 +7,8 @@ const getObras = async () => {
     } catch (error) {
         console.log("Error en getObras:", error.message);
     }
-};
+};;
+
 const getObrasId = async (idObra) => {
     try {
         const obra = await Obras.findByPk(idObra);
