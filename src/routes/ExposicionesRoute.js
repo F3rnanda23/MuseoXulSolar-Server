@@ -1,5 +1,12 @@
-const {Router} = require("express");
-const {createExpoHandler, allExpoHandler, idExpoHandler, updateExpoHandler, deleteExpo, restoreExpo} = require("../handlers/expoHandler")
+const { Router } = require("express");
+const {
+    createExpoHandler,
+    allExpoHandler,
+    idExpoHandler,
+    updateExpoHandler,
+    deleteExpo,
+    restoreExpo
+} = require("../handlers/expoHandler.js")
 
 const routerExposiciones = Router();
 

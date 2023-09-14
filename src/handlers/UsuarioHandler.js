@@ -4,7 +4,7 @@ const {
     restoreLogicUser,
     allUser,
     editUser
-} = require("../controllers/UsuarioController");
+} = require("../controllers/UsuarioController.js");
 
 
 
