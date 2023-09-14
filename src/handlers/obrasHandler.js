@@ -1,5 +1,4 @@
-const { error } = require("console");
-const { getObras, getObrasId, postObras } = require("../controllers/obrasController");
+const { getObras, getObrasId, postObras } = require("../controllers/obrasController.js");
 
 const getObrasHandler = async (req, res) => {
     try {

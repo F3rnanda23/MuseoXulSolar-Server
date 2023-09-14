@@ -1,4 +1,4 @@
-const { Usuario } = require("../db");
+const { Usuario } = require("../db.js");
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 

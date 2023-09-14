@@ -1,4 +1,4 @@
-const { Actividades } = require("../db")
+const { Actividades } = require("../db.js")
 
 const postActivity = async ({ date, name, image, description }) => {
   const found = await Actividades.findOne({ where: { name } });

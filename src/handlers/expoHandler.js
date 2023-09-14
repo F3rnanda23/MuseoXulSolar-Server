@@ -1,4 +1,4 @@
-const {postExpo, allExpo, idExpo, putExpo, deleteLogic, restoreLogic} = require("../controllers/exposicionesController");
+const {postExpo, allExpo, idExpo, putExpo, deleteLogic, restoreLogic} = require("../controllers/exposicionesController.js");
 
 
 

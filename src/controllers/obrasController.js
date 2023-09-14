@@ -1,4 +1,4 @@
-const { Obras } = require("../db");
+const { Obras } = require("../db.js");
 
 const getObras = async () => {
     try {

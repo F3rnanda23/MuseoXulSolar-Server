@@ -1,4 +1,4 @@
-const { postActivity, allActivity, editActivity, deleteLogic, restoreLogic } = require("../controllers/ActivityController");
+const { postActivity, allActivity, editActivity, deleteLogic, restoreLogic } = require("../controllers/ActivityController.js");
 
 
 

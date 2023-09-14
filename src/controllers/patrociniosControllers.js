@@ -1,4 +1,4 @@
-const { Patrocinios } = require("../db");
+const { Patrocinios } = require("../db.js");
 
 
 //Ruta para crear Patrocinios
