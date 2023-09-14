@@ -5,7 +5,7 @@ const { NODE_ENV } = process.env;
 
 // En desarrollo, usa force: true para sincronizar la base de datos
 const forceSync = NODE_ENV === 'development';
-
+server.get('/', (req, res) => res.send('Hello World!, mundoooo'))
 
 conn.sync({ force: forceSync }).then(() => {
   server.listen(3001, () => {
