@@ -18,20 +18,22 @@ const getObrasId = async (idObra) => {
 };
 const postObras = async (bodyObra) => {
     try {
-        await Obras.findOrCreate({
-            where: {nombre: nombreUsuario},
+        let obraCreada = await Obras.findOrCreate({
+            where: {name: bodyObra.name },
             defaults: {
                 year: bodyObra.year,
                 name: bodyObra.name,
                 image: bodyObra.image,
+                usuarioXObras: bodyObra.usuarioId
             },
-        }).spread ((obra, creado) => {
-            if(creado) {
+        }).then (([obra, creado])=> {
+            if(creado){
                 return obra;
             } else {
                 return;
             }
         });
+        return obraCreada
     } catch (error) {
         console.log("Error en postObras:", error.message);
     }
