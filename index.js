@@ -1,8 +1,12 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
-// Syncing all the models at ONCE. 
-conn.sync({ force: true }).then(() => {
+const { NODE_ENV } = process.env;
+
+// En desarrollo, usa force: true para sincronizar la base de datos
+const forceSync = NODE_ENV === 'development';
+
+conn.sync({ force: forceSync }).then(() => {
   server.listen(3001, () => {
     console.log(`%s listening at 3001`); // eslint-disable-line no-console
   });

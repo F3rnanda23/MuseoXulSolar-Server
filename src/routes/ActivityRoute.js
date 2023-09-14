@@ -5,7 +5,7 @@ const {
     putActivityHandler,
     deleteActivity,
     restoreActivity 
-} = require("../handlers/ActivityHandlers")
+} = require("../handlers/ActivityHandlers.js")
 
 const routerActivity = Router();
 
