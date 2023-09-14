@@ -2,8 +2,8 @@
     "data":[
         {
             "name": "Paseo turistico",
-            "fecha": "12-09-2023",
-            "Descripcion": "Es un recorrido por el museo"
+            "date": "12-09-2023",
+            "description": "Es un recorrido por el museo"
         }
     ]
 }
