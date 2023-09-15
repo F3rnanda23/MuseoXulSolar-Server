@@ -2,7 +2,7 @@ const { Usuario } = require("../db.js");
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 
-const createUsuario = async ({ birthday, name, phone, password, admin }) => {
+const createUsuario = async ({ birthday, name, phone, password, admin, email }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -10,6 +10,7 @@ const createUsuario = async ({ birthday, name, phone, password, admin }) => {
     const postUsuario = await Usuario.create({
         birthday,
         name,
+        email,
         phone,
         password: hashedPassword,//* Guarda la contraseña hasheada
         admin
