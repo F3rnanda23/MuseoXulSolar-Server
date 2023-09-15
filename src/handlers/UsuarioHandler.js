@@ -3,7 +3,8 @@ const {
     deleteLogicUser,
     restoreLogicUser,
     allUser,
-    editUser
+    editUser,
+    loginUser
 } = require("../controllers/UsuarioController.js");
 
 
@@ -60,10 +61,26 @@ const editarUsuario = async(req,res)=>{
     }
 }
 
+const handleLogin = async (req, res) => {
+    const { email, password } = req.body;
+  
+    const result = await loginUser(email, password);
+  
+    if (result.success) {
+      // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
+      // Ejemplo de establecimiento de sesión: req.session.user = result.user;
+      res.status(200).json({ success: true, message: "Inicio de sesión exitoso" });
+    } else {
+      // El inicio de sesión falló, devuelve un mensaje de error.
+      res.status(401).json({ success: false, message: result.message });
+    }
+  };
+
 module.exports = {
     loginUserHandler,
     deleteUserLogic,
     restoreUserLogic,
     bringUsers,
-    editarUsuario
+    editarUsuario,
+    handleLogin
 }
