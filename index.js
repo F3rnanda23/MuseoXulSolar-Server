@@ -1,7 +1,22 @@
 const server = require('./src/index.js');
 const { conn } = require('./src/db.js');
+const express = require("express");
 const port = process.env.PORT || 3001;
 
+const app = express();
+
+app.get("/", (req, res) => {
+  const htmlResponse =
+    `<html>
+      <head>
+        <title>Node.js y express</title>
+      </head>
+      <body>
+        <h1>Proyecto levantado</h1>
+      </body>
+    </html>`
+    res.send(htmlResponse);
+})
 // const { NODE_ENV } = process.env;
 
 // En desarrollo, usa force: true para sincronizar la base de datos
