@@ -33,10 +33,10 @@ const restoreLogicUser = async (id) => {
     return restores;
 };
 
-const editUser = async ({id, name, birthday, phone, password, admin }) => {
+const editUser = async ({ id, name, birthday, phone, password, admin }) => {
     const users = await Usuario.findByPk(id);
 
-    if(!users){
+    if (!users) {
         throw new Error("User no encontrado");
     };
 
@@ -51,10 +51,34 @@ const editUser = async ({id, name, birthday, phone, password, admin }) => {
     return users;
 }
 
+const loginUser = async (email, password) => {
+
+    // Busca el usuario por su dirección de correo electrónico
+    const user = await Usuario.findOne({ where: { email } });
+
+    // Si no se encuentra el usuario, devuelve un mensaje de error
+    if (!user) {
+        return { success: false, message: "Correo electrónico o contraseña incorrecta." };
+    }
+
+    // Compara la contraseña proporcionada con la contraseña almacenada en la base de datos
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (passwordMatch) {
+        // La contraseña es válida, el usuario puede iniciar sesión
+        return { success: true, user };
+    } else {
+        // La contraseña no coincide, devuelve un mensaje de error
+        return { success: false, message: "Correo electrónico o contraseña incorrecta." };
+    }
+
+};
+
 module.exports = {
     createUsuario,
     deleteLogicUser,
     restoreLogicUser,
     allUser,
-    editUser
+    editUser,
+    loginUser
 }
