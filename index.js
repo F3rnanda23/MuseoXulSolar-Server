@@ -1,11 +1,9 @@
 const server = require('./src/index.js');
 const { conn } = require('./src/db.js');
-const express = require("express");
 const port = process.env.PORT || 3001;
 
-const app = express();
 
-app.get("/", (req, res) => {
+server.get("/", (req, res) => {
   const htmlResponse =
     `<html>
       <head>
