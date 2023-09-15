@@ -12,17 +12,17 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false,
       },
-      email:{
+      email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true,
       },
       birthday: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       phone: {
         type: DataTypes.STRING,
@@ -30,12 +30,17 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       admin: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       },
+      googleId: {
+        type: DataTypes.STRING,
+        allowNull: true, // Opciones dependiendo de tus necesidades
+        unique: true, // Para asegurarse de que no haya duplicados
+      }
     },
     {
       paranoid: true,
