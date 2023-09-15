@@ -63,7 +63,7 @@ const loginUser = async (email, password) => {
 
     // Compara la contraseña proporcionada con la contraseña almacenada en la base de datos
     const passwordMatch = await bcrypt.compare(password, user.password);
-    const { email, id, name, } = user;
+    const { id, name, } = user;
     if (passwordMatch) {
         // La contraseña es válida, el usuario puede iniciar sesión
         return { success: true, email,id,name };
