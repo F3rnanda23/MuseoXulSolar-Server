@@ -1,8 +1,12 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const passport = require("passport");
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const loginGoogle = require("./routes/googleRoute.js");
+require("./middlewares/google.js");
+
 
 require('./db.js');
 
@@ -10,6 +14,8 @@ const server = express();
 
 server.name = 'API';
 
+
+server.use(passport.initialize());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
@@ -22,7 +28,16 @@ server.use((req, res, next) => {
   next();
 });
 
+
+server.use("/auth",passport.authenticate("auth-google",{
+  scope:[
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
+  ],
+  session: false,
+}),loginGoogle)
 server.use('/', routes);
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
