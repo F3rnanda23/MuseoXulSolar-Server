@@ -15,7 +15,7 @@ routerExposiciones.get("/:id", idExpoHandler);
 routerExposiciones.post("/", createExpoHandler);
 routerExposiciones.put("/:id", updateExpoHandler);
 routerExposiciones.delete("/:id", deleteExpo);
-routerExposiciones.put("/restore/:id", restoreExpo)
+routerExposiciones.put("/restore/:id", restoreExpo);
 
 
 module.exports = routerExposiciones;
