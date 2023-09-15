@@ -63,10 +63,10 @@ const loginUser = async (email, password) => {
 
     // Compara la contraseña proporcionada con la contraseña almacenada en la base de datos
     const passwordMatch = await bcrypt.compare(password, user.password);
-
+    const { email, id, name, } = user;
     if (passwordMatch) {
         // La contraseña es válida, el usuario puede iniciar sesión
-        return { success: true, user };
+        return { success: true, email,id,name };
     } else {
         // La contraseña no coincide, devuelve un mensaje de error
         return { success: false, message: "Correo electrónico o contraseña incorrecta." };
