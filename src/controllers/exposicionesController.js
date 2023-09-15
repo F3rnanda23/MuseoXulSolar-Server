@@ -1,4 +1,4 @@
-const {Exposiciones} = require("../db")
+const {Exposiciones} = require("../db.js")
 
 const postExpo = async({date,name,description})=>{
     const found = await Exposiciones.findOne({where: {name}})
