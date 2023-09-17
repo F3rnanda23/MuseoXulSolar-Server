@@ -65,11 +65,11 @@ const handleLogin = async (req, res) => {
     const { email, password } = req.body;
   
     const result = await loginUser(email, password);
-  
+    const {id, name} = result;
     if (result.success) {
       // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
       // Ejemplo de establecimiento de sesión: req.session.user = result.user;
-      res.status(200).json({ success: true, message: "Inicio de sesión exitoso" });
+      res.status(200).json({ success: true, message: "Inicio de sesión exitoso",id,name,email });
     } else {
       // El inicio de sesión falló, devuelve un mensaje de error.
       res.status(401).json({ success: false, message: result.message });

@@ -29,3 +29,16 @@ passport.use(
       }
     }
   ));
+
+
+  // Esto es necesario solo si estás utilizando sesiones
+passport.serializeUser(function(user, done) {
+  done(null, user.id); // Usualmente se serializa el ID del usuario
+});
+
+passport.deserializeUser(function(id, done) {
+  // Aquí debes buscar el usuario por su ID en la base de datos y pasarlo a done
+  Usuario.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
