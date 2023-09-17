@@ -1,8 +1,14 @@
-const { getObras, getObrasId, postObras } = require("../controllers/obrasController.js");
+const {
+    getObras,
+    getObrasId,
+    postObras,
+    searchByNameObras
+} = require("../controllers/obrasController.js");
 
 const getObrasHandler = async (req, res) => {
+    const {name} = req.query;
     try {
-        const obras = await getObras();
+        const obras = name? await searchByNameObras(name): await getObras();
         res.status(200).json(obras);
     } catch (error) {
         res.status(400).json({ error: error.message });

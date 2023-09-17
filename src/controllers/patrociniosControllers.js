@@ -1,4 +1,16 @@
 const { Patrocinios } = require("../db.js");
+const { Op } = require("sequelize");
+
+const searchByNamePatro = async (name) => {
+  const foundName = await Patrocinios.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      }
+    }
+  })
+  return foundName;
+}
 
 
 //Ruta para crear Patrocinios
@@ -53,5 +65,6 @@ module.exports = {
   getPatrocinios,
   putPatrocinios,
   deletePatrocinios,
-  restorePatricinios
+  restorePatricinios,
+  searchByNamePatro
 };
