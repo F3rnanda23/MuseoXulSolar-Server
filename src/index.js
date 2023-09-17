@@ -13,13 +13,10 @@ require('./db.js');
 const server = express();
 
 server.name = 'API';
-<<<<<<< HEAD:src/app.js
-server.use(express.json())
-=======
+
 
 
 server.use(passport.initialize());
->>>>>>> 92b5983b9f3a6fd74bdf7f7e2078de31463d3aff:src/index.js
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
