@@ -1,4 +1,16 @@
 const { Obras } = require("../db.js");
+const { Op } = require("sequelize");
+
+const searchByNameObras = async (name) => {
+  const foundName = await Obras.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      }
+    }
+  })
+  return foundName;
+}
 
 const getObras = async () => {
     try {
@@ -24,5 +36,5 @@ const postObras = async ({date,name,year,image}) => {
 };
 
 module.exports = {
-    getObras, getObrasId, postObras,
+    getObras, getObrasId, postObras,searchByNameObras
 };

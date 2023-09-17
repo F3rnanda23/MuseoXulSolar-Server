@@ -3,7 +3,8 @@ const {
   getPatrocinios,
   putPatrocinios,
   deletePatrocinios,
-  restorePatricinios
+  restorePatricinios,
+  searchByNamePatro
 } = require("../controllers/patrociniosControllers.js");
 
 const postPatrociniosHandler = async (req, res) => {
@@ -17,8 +18,9 @@ const postPatrociniosHandler = async (req, res) => {
 };
 
 const getPatrociniosHandler = async (req, res) => {
+  const {name} = req.query;
   try {
-    const getPatrocinioss = await getPatrocinios();
+    const getPatrocinioss = name?await searchByNamePatro(name):await getPatrocinios();
     res.status(200).json(getPatrocinioss);
   } catch (error) {
     res.status(400).json({ error: error.message });
