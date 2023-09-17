@@ -1,4 +1,11 @@
-const { postActivity, allActivity, editActivity, deleteLogic, restoreLogic } = require("../controllers/ActivityController.js");
+const { 
+    postActivity, 
+    allActivity, 
+    editActivity, 
+    deleteLogic, 
+    restoreLogic,
+    searchByName
+ } = require("../controllers/ActivityController.js");
 
 
 
@@ -13,8 +20,9 @@ const createActivityHandler = async (req, res) => {
 }
 
 const allActivityHandler = async (req, res) => {
+    const {name} = req.query;
     try {
-        const getActivities = await allActivity();
+        const getActivities = name? await searchByName(name): await allActivity();
         res.status(200).json(getActivities);
     } catch (error) {
         res.status(404).json({ error: error.message });

@@ -1,4 +1,16 @@
-const {Exposiciones} = require("../db.js")
+const {Exposiciones} = require("../db.js");
+const { Op } = require("sequelize");
+
+const searchByNameExpo = async (name) => {
+  const foundName = await Exposiciones.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      }
+    }
+  })
+  return foundName;
+}
 
 const postExpo = async({date,name,description})=>{
     const found = await Exposiciones.findOne({where: {name}})
@@ -49,5 +61,6 @@ module.exports = {
     allExpo,
     putExpo,
     deleteLogic,
-    restoreLogic
+    restoreLogic,
+    searchByNameExpo
 };

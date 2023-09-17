@@ -1,4 +1,17 @@
-const { Actividades } = require("../db.js")
+const { Actividades } = require("../db.js");
+const { Op } = require("sequelize");
+
+const searchByName = async (name) => {
+  const foundName = await Actividades.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${name}%`,
+      }
+    }
+  })
+  return foundName;
+}
+
 
 const postActivity = async ({ date, name, image, description }) => {
   const found = await Actividades.findOne({ where: { name } });
@@ -32,13 +45,13 @@ const editActivity = async ({ id, name, date, image, description }) => {
   return activity;
 }
 
-const deleteLogic = async(id)=>{
-  const deletee = await Actividades.destroy({where:{id}});
+const deleteLogic = async (id) => {
+  const deletee = await Actividades.destroy({ where: { id } });
   return deletee;
 }
 
-const restoreLogic = async(id)=>{
-  const restores = await Actividades.restore({where: {id}});
+const restoreLogic = async (id) => {
+  const restores = await Actividades.restore({ where: { id } });
   return restores;
 }
 module.exports = {
@@ -46,5 +59,6 @@ module.exports = {
   allActivity,
   editActivity,
   deleteLogic,
-  restoreLogic
+  restoreLogic,
+  searchByName
 };
