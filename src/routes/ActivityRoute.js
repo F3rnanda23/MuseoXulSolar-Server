@@ -13,7 +13,7 @@ const routerActivity = Router();
 routerActivity.get("/", allActivityHandler);
 routerActivity.post("/", createActivityHandler);
 //* Rutas por /:id
-routerActivity.put("/:id", putActivityHandler);
+routerActivity.put("/set/:id", putActivityHandler);
 routerActivity.get("/:id", idActHandler);
 routerActivity.delete("/:id", deleteActivity);
 routerActivity.put("/restaurar/:id", restoreActivity);
