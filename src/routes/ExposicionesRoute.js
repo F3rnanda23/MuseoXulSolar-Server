@@ -12,8 +12,8 @@ const routerExposiciones = Router();
 
 routerExposiciones.get("/", allExpoHandler);
 routerExposiciones.get("/:id", idExpoHandler);
-routerExposiciones.post("/", createExpoHandler);
-routerExposiciones.put("/:id", updateExpoHandler);
+routerExposiciones.post("/create", createExpoHandler);
+routerExposiciones.put("/set/:id", updateExpoHandler);
 routerExposiciones.delete("/:id", deleteExpo);
 routerExposiciones.put("/restore/:id", restoreExpo);
 

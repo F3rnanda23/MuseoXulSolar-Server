@@ -11,11 +11,11 @@ const {
 const routerActivity = Router();
 
 routerActivity.get("/", allActivityHandler);
-routerActivity.post("/", createActivityHandler);
+routerActivity.post("/create", createActivityHandler);
 //* Rutas por /:id
 routerActivity.put("/set/:id", putActivityHandler);
 routerActivity.get("/:id", idActHandler);
-routerActivity.delete("/:id", deleteActivity);
+routerActivity.delete("/delete/:id", deleteActivity);
 routerActivity.put("/restaurar/:id", restoreActivity);
 
 
