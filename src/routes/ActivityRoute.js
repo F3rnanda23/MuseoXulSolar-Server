@@ -4,7 +4,8 @@ const {
     allActivityHandler,
     putActivityHandler,
     deleteActivity,
-    restoreActivity 
+    restoreActivity,
+    idActHandler
 } = require("../handlers/ActivityHandlers.js")
 
 const routerActivity = Router();
@@ -13,7 +14,7 @@ routerActivity.get("/", allActivityHandler);
 routerActivity.post("/", createActivityHandler);
 //* Rutas por /:id
 routerActivity.put("/:id", putActivityHandler);
-routerActivity.get("/:id", putActivityHandler);
+routerActivity.get("/:id", idActHandler);
 routerActivity.delete("/:id", deleteActivity);
 routerActivity.put("/restaurar/:id", restoreActivity);
 
