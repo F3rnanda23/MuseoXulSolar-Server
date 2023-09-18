@@ -1,12 +1,14 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const passport = require("passport");
+const { logout } = require('passport');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const loginGoogle = require("./routes/googleRoute.js");
 require("./middlewares/google.js");
-
+console.log(logout);
 
 require('./db.js');
 
@@ -15,8 +17,20 @@ const server = express();
 server.name = 'API';
 
 
+server.use(session({
+  secret: 'xul-solar', // Cambia esto a una clave secreta segura
+  resave: false,
+  saveUninitialized: false,
+  // Puedes configurar otras opciones según tus necesidades
+}));
+
+// server.get('/logout', (req, res) => {
+//   logout(req) // Esta función de Passport.js eliminará la autenticación del usuario
+//   res.redirect('/'); // Redirige al usuario a la página de inicio u a otra página de tu elección después del logout
+// });
 
 server.use(passport.initialize());
+server.use(passport.session());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
@@ -30,13 +44,16 @@ server.use((req, res, next) => {
 });
 
 
-server.use("/auth",passport.authenticate("auth-google",{
-  scope:[
+
+
+server.use("/auth", passport.authenticate("auth-google", {
+  scope: [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/userinfo.email",
   ],
   session: false,
-}),loginGoogle)
+}), loginGoogle)
+
 server.use('/', routes);
 
 

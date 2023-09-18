@@ -9,9 +9,9 @@ const {
 } = require("../handlers/UsuarioHandler.js");
 const routerUsuario = Router();
 
-routerUsuario.get("/login", handleLogin)
+routerUsuario.post("/login", handleLogin)
 routerUsuario.get("/", bringUsers);
-routerUsuario.post("/login", loginUserHandler);
+routerUsuario.post("/crear", loginUserHandler);
 routerUsuario.delete("/:id", deleteUserLogic);
 routerUsuario.put("/restaurar/:id", restoreUserLogic);
 routerUsuario.put("/editar/:id", editarUsuario);
