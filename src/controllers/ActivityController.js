@@ -1,6 +1,12 @@
 const { Actividades } = require("../db.js");
 const { Op } = require("sequelize");
 
+
+const idAct = async(id)=>{
+  const found = await Actividades.findOne({where:{id}})
+  return found
+}
+
 const searchByName = async (name) => {
   const foundName = await Actividades.findAll({
     where: {
@@ -60,5 +66,6 @@ module.exports = {
   editActivity,
   deleteLogic,
   restoreLogic,
-  searchByName
+  searchByName,
+  idAct
 };
