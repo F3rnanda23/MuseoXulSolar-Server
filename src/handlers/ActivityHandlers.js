@@ -4,8 +4,20 @@ const {
     editActivity, 
     deleteLogic, 
     restoreLogic,
-    searchByName
+    searchByName,
+    idAct
  } = require("../controllers/ActivityController.js");
+
+
+ const idActHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const getId = await idAct(id);
+        res.status(200).json(getId)
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
 
 
 
@@ -66,5 +78,6 @@ module.exports = {
     allActivityHandler,
     putActivityHandler,
     deleteActivity,
-    restoreActivity
+    restoreActivity,
+    idActHandler
 }
