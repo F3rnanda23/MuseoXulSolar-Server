@@ -10,9 +10,9 @@ const {
 const routerPatrocinios = Router();
 
 routerPatrocinios.put('/restaurar/:id', restorePatriciniosHandler)
-routerPatrocinios.post('/', postPatrociniosHandler)
+routerPatrocinios.post('/create', postPatrociniosHandler)
 routerPatrocinios.get('/', getPatrociniosHandler)
-routerPatrocinios.put('/:id', putPatrociniosHandler)
+routerPatrocinios.put('/set/:id', putPatrociniosHandler)
 routerPatrocinios.delete('/:id', deletePatrociniosHandler)
 
 

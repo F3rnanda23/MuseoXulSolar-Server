@@ -44,6 +44,7 @@ module.exports = (sequelize) => {
     },
     {
       paranoid: true,
+      timeStamp: true
     }
   );
 };
