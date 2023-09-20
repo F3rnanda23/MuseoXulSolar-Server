@@ -2,9 +2,11 @@ require("dotenv").config();
 
 const mercadopago = require("mercadopago");
 
+const { ACCESS_TOKEN } = process.env;
+
 mercadopago.configure({
   // sandbox: true, variable para el modo de prueba de mp
-  access_token: "acces tokken(hay que hacerlo juju)",
+  access_token: `${ACCESS_TOKEN}`,
 });
 
 const pagar = (req, res) => {
