@@ -4,7 +4,6 @@ const routerExposiciones = require("./ExposicionesRoute.js");
 const ObrasRoute = require("./ObrasRoute.js");
 const PatrociniosRoute = require("./PatrociniosRoute.js");
 const routerUsuario = require("./UsuarioRoute.js");
-const loginGoogle = require("./googleRoute.js")
 const router = Router();
 
 router.use("/actividades", routerActivity);
