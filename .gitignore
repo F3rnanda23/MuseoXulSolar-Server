@@ -105,6 +105,10 @@ dist
 
 # package-lock.json
 package-lock.json
+<<<<<<< HEAD
+.vercel
+=======
 
 # Ignorar archivos .DS_Store de macOS
 .DS_Store
+>>>>>>> 063f362baef8c8001b1dfbf5b361fe5255ffb5e9
