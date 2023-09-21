@@ -16,11 +16,11 @@ const pagar = (req, res) => {
         title: req.body.description,
         unit_price: Number(req.body.price),
         quantity: Number(req.body.quantity),
-      },
+      },  
     ],
     back_urls: {
-      success: "http://localhost:8080/feedback",
-      failure: "http://localhost:8080/feedback",
+      success: "http://localhost:5173/",
+      failure: "http://localhost:5173/",
     },
     auto_return: "approved",
   };
