@@ -19,10 +19,10 @@ const searchByName = async (name) => {
 }
 
 
-const postActivity = async ({ date, name, image, description }) => {
+const postActivity = async ({ date, name, image, description, hora }) => {
   const found = await Actividades.findOne({ where: { name } });
   if (found) throw new Error("ya existe esa actividad")
-  const createActivity = await Actividades.create({ date, name, image, description });
+  const createActivity = await Actividades.create({ date, name, image, description, hora });
   return createActivity
 }
 
