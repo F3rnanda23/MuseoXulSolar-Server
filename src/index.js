@@ -3,7 +3,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
-
+const multer = require("multer");
+const path = require("path");
 
 require('./db.js');
 
@@ -24,6 +25,31 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+const storage = multer.diskStorage({
+  destination: function (req, file , cb) {
+    cb(null, path.join(__dirname, "./public/uploads"));
+  },
+  filename: function (req, file, cb){
+    cb(null, file.originalname);
+  },
+});
+server.use(
+  multer({
+    storage,
+    limits: {fileSize: 1000000},
+    fileFilter: (req, file, cb)=> {
+      const filetypes = /jpeg|png|jpg|pdf/;
+      if(1) {
+        return cb(null, true);
+      }
+      cb(
+        { message: "Error: Archivo con extencion invalida", statusCode: 400},
+        false
+      );
+    },
+  }).array("images", 10)
+);
 
 
 server.use('/', routes);

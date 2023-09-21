@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      hora: {
+        type: DataTypes.TIME,
+        allowNull: false
+      },
     },
     {
       paranoid: true,

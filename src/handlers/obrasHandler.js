@@ -25,8 +25,10 @@ const getObrasIdHandler = async (req, res) => {
 };
 const postObrasHandler = async (req, res) => {
     try {
-        let { name, year, image, date } = req.body;
-        const obraCreada = await postObras({ name, year, image, date });
+        let { name, year, date } = req.body;
+        let images = req.files
+        console.log("🚀 ~ file: obrasHandler.js:30 ~ postObrasHandler ~ images:", images)
+        const obraCreada = await postObras({ name, year, images, date });
         res.status(200).json(obraCreada);
     } catch (error) {
         res.status(400).json({ error: error.message });
