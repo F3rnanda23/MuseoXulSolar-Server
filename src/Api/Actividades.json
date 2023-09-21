@@ -4,13 +4,15 @@
             "name": "Paseo turistico",
             "date": "12-09-2023",
             "image": "https://www.image.com",
-            "description": "Es un recorrido por el museo"
+            "description": "Es un recorrido por el museo",
+            "hora": "16:00"
         },
         {
             "name": "Paseo turistico 2",
             "date": "12-09-2023",
             "image": "https://www.image2.com",
-            "description": "Es un recorrido por el museo"
+            "description": "Es un recorrido por el museo",
+            "hora": "16:00"
         }
     ]
 }

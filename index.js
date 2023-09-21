@@ -20,7 +20,7 @@ server.get("/", (req, res) => {
 // En desarrollo, usa force: true para sincronizar la base de datos
 // const forceSync = NODE_ENV === 'development';
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(port, () => {
     console.log(`%s listening at 3001`); // eslint-disable-line no-console
   });
