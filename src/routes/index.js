@@ -5,7 +5,9 @@ const ObrasRoute = require("./ObrasRoute.js");
 const PatrociniosRoute = require("./PatrociniosRoute.js");
 const routerUsuario = require("./UsuarioRoute.js");
 const router = Router();
+const routerMp = require('./MercadoPagoRoute.js')
 
+router.use('/pagar',routerMp)
 router.use("/actividades", routerActivity);
 router.use("/exposiciones", routerExposiciones );
 router.use("/obras", ObrasRoute);
