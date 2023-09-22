@@ -5,7 +5,8 @@ const {
     restoreUserLogic,
     bringUsers,
     editarUsuario,
-    handleLogin
+    handleLogin,
+    handleLoginGoogle,
 } = require("../handlers/UsuarioHandler.js");
 const routerUsuario = Router();
 
@@ -15,6 +16,7 @@ routerUsuario.post("/crear", loginUserHandler);
 routerUsuario.delete("/:id", deleteUserLogic);
 routerUsuario.put("/restaurar/:id", restoreUserLogic);
 routerUsuario.put("/editar/:id", editarUsuario);
+routerUsuario.post("/loginGoogle",handleLoginGoogle);
 
 
 module.exports = routerUsuario;

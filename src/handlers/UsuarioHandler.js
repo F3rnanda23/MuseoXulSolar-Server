@@ -4,9 +4,10 @@ const {
     restoreLogicUser,
     allUser,
     editUser,
-    loginUser
+    loginUser,
+    buscarUsuarioPorEmail
 } = require("../controllers/UsuarioController.js");
-const {sendEmail} = require("../nodemailer/nodemailer.js")
+const { sendEmail } = require("../nodemailer/nodemailer.js")
 
 
 const bringUsers = async (req, res) => {
@@ -18,10 +19,18 @@ const bringUsers = async (req, res) => {
     }
 }
 
+
 const loginUserHandler = async (req, res) => {
 
     const { birthday, name, email, phone, password, admin } = req.body;
     try {
+        const existingUser = await buscarUsuarioPorEmail(email);
+
+        if (existingUser) {
+            // Si el usuario ya existe, puedes enviar una respuesta de error o realizar alguna otra acción.
+            return res.status(404).json({ message: 'El usuario con este correo electrónico ya existe' });
+        }
+
         const postUser = await createUsuario({ birthday, name, email, phone, password, admin })
         sendEmail(postUser.email)
         res.status(200).json(postUser);
@@ -93,6 +102,24 @@ const handleLogin = async (req, res) => {
     }
 };
 
+const handleLoginGoogle = async (req, res) => {
+    try {
+        // Firebase ya gestionó el inicio de sesión con Google, así que el usuario ya está autenticado.
+        // Puedes obtener información sobre el usuario desde Firebase si es necesario.
+        const user = req.user; // Suponiendo que req.user contiene la información del usuario autenticado
+        
+
+        // Aquí puedes realizar cualquier acción adicional que necesites con la información del usuario.
+        // Por ejemplo, almacenar el usuario en tu base de datos o realizar alguna lógica personalizada.
+
+        res.status(200).json({ success: true, message: "Inicio de sesión con Google exitoso", user });
+    } catch (error) {
+        // Manejar errores aquí
+        console.error("Error en el inicio de sesión con Google:", error);
+        res.status(500).json({ success: false, message: "Error en el inicio de sesión con Google" });
+    }
+}
+
 
 module.exports = {
     loginUserHandler,
@@ -100,5 +127,6 @@ module.exports = {
     restoreUserLogic,
     bringUsers,
     editarUsuario,
-    handleLogin
+    handleLogin,
+    handleLoginGoogle,
 }
