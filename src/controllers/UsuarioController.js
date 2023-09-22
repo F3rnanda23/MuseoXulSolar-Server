@@ -77,16 +77,17 @@ const loginUser = async (email, password) => {
 
 const buscarUsuarioPorEmail = async (email) => {
     try {
-      // Realiza la búsqueda del usuario en la base de datos (esto puede variar según tu tecnología de base de datos)
-      const usuario = await Usuario.findOne({ email });
-      if(usuario){
-        throw new Error("ya existe el usuario")
-      }else{
-          return usuario;
+        // Realiza la búsqueda del usuario en la base de datos (esto puede variar según tu tecnología de base de datos)
+        const usuario = await Usuario.findOne({ where: {email} });
+  
+        if (usuario) {
+          throw new Error("Ya existe un usuario con este correo electrónico");
+        }
+  
+        return usuario;
+      } catch (error) {
+        throw error;
       }
-    } catch (error) {
-      throw error;
-    }
   };
 
 module.exports = {
