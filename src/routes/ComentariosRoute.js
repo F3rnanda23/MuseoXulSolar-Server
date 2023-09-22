@@ -3,6 +3,6 @@ const {postComentariosHandler,
 getComentariosHandler} = require('../handlers/ComentariosHandler')
 const routeComentarios = Router()
 
-routeComentarios.post("/", postComentariosHandler)
+routeComentarios.post("/crear", postComentariosHandler)
 routeComentarios.get("/",getComentariosHandler)
 module.exports = routeComentarios
