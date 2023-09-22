@@ -36,11 +36,6 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       },
-      googleId: {
-        type: DataTypes.STRING,
-        allowNull: true, // Opciones dependiendo de tus necesidades
-        unique: true, // Para asegurarse de que no haya duplicados
-      }
     },
     {
       paranoid: true,

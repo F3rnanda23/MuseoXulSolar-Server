@@ -6,6 +6,7 @@ const {
     editUser,
     loginUser
 } = require("../controllers/UsuarioController.js");
+const {sendEmail} = require("../nodemailer/nodemailer.js")
 
 
 
@@ -23,6 +24,7 @@ const loginUserHandler = async (req, res) => {
     const { birthday, name, email, phone, password, admin } = req.body;
     try {
         const postUser = await createUsuario({ birthday, name, email, phone, password, admin })
+        sendEmail(postUser.email)
         res.status(200).json(postUser);
     } catch (error) {
         res.status(404).json({ error: error.message })
