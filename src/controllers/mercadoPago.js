@@ -16,6 +16,7 @@ const pagar = (req, res) => {
         title: req.body.description,
         unit_price: Number(req.body.price),
         quantity: Number(req.body.quantity),
+        currency_id:'USD'
       },  
     ],
     back_urls: {
