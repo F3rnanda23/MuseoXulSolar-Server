@@ -78,9 +78,9 @@ const buscarUsuarioPorEmail = async (email) => {
     try {
       // Realiza la búsqueda del usuario en la base de datos (esto puede variar según tu tecnología de base de datos)
       const usuario = await Usuario.findOne({ email });
-      if(usuario){
+      if(usuario !== usuario){
         throw new Error("ya existe el usuario")
-      }else{
+      }else if(!usuario){
           return usuario;
       }
     } catch (error) {
