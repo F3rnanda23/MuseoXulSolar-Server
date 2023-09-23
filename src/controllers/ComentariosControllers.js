@@ -1,20 +1,4 @@
-// const {Comentarios} = require('../db')
-// const {op} = require('sequelize')
 
-// const postComentarios = async({description,date}) =>{
-//     const comentariosss = await Comentarios.create({description, date})
-//     return comentariosss
-// }
-
-// const getComentarios = async() =>{
-//     const getComments = await Comentarios.findAll()
-//     return getComments
-// }
-
-// module.exports = {
-//     postComentarios,
-//     getComentarios
-// }
 
 const { Comentarios, Usuario } = require("../db");
 const { Op } = require("sequelize");

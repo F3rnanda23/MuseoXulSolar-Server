@@ -35,7 +35,13 @@ module.exports = (sequelize) => {
       admin: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
+        defaultValue: false
       },
+      suscripcion:{
+        type: DataTypes.ENUM("Gold", "Silver", "Default"),
+        allowNull:true,
+        defaultValue: "Default"
+      }
     },
     {
       paranoid: true,
