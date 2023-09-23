@@ -3,7 +3,7 @@ const { Usuario, Comentarios } = require("../db.js");
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 
-const createUsuario = async ({ birthday, name, phone, password, admin, email, }) => {
+const createUsuario = async ({ birthday, name, phone, password, admin, email,suscripcion }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -14,7 +14,8 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email, })
         email,
         phone,
         password: hashedPassword,//* Guarda la contraseña hasheada
-        admin
+        admin,
+        suscripcion
     });
     
     return postUsuario;
@@ -36,7 +37,7 @@ const restoreLogicUser = async (id) => {
     return restores;
 };
 
-const editUser = async ({ id, name, birthday, phone, password, admin }) => {
+const editUser = async ({ id, name, birthday, phone, password, admin, suscripcion }) => {
     const users = await Usuario.findByPk(id);
 
     if (!users) {
@@ -48,6 +49,7 @@ const editUser = async ({ id, name, birthday, phone, password, admin }) => {
     users.phone = phone;
     users.password = password;
     users.admin = admin;
+    users.suscripcion = suscripcion;
 
     await users.save();
 
