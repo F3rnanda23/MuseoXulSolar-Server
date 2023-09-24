@@ -16,7 +16,9 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email, })
         password: hashedPassword,//* Guarda la contraseña hasheada
         admin
     });
+    
     return postUsuario;
+
 };
 
 const allUser = async () => {
@@ -90,6 +92,12 @@ const buscarUsuarioPorEmail = async (email) => {
       }
   };
 
+  const buscarEmailConGoolge = async (email) => {
+    const userInfo = Usuario.findOne({where: {email} })
+
+    return userInfo;
+  }
+
 module.exports = {
     createUsuario,
     deleteLogicUser,
@@ -97,5 +105,6 @@ module.exports = {
     allUser,
     editUser,
     loginUser,
-    buscarUsuarioPorEmail
+    buscarUsuarioPorEmail,
+    buscarEmailConGoolge
 }
