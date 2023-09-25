@@ -20,22 +20,23 @@ const searchByName = async (name) => {
 }
 
 
-const postActivity = async ({ date, name, images, description, hora }) => {
+const postActivity = async ({ date, name, image, description, hora }) => {
   const found = await Actividades.findOne({ where: { name } });
   if (found) throw new Error("ya existe esa actividad")
-  let pathImg = 'imagen generica'
-  if (images.length) {
-    let nameImg = images[0].originalname
-    let result = await uploadCloud(images[0].path, nameImg)
-    result && (pathImg = result.url)
-    const rutaCompleta = path.resolve(
-      __dirname,
-      "../public/uploads",
-      nameImg
-    );
-    deleteFile(rutaCompleta)
-  }
-  const createActivity = await Actividades.create({ date, name, image: pathImg, description, hora });
+  // let pathImg = 'imagen generica'
+  // if (images.length) {
+  //   let nameImg = images[0].originalname
+  //   let result = await uploadCloud(images[0].path, nameImg)
+  //   result && (pathImg = result.url)
+  //   const rutaCompleta = path.resolve(
+  //     __dirname,
+  //     "../public/uploads",
+  //     nameImg
+  //   );
+  //   deleteFile(rutaCompleta)
+  // }
+  // image: pathImg
+  const createActivity = await Actividades.create({ date, name, image, description, hora });
   return createActivity
 }
 
