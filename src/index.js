@@ -17,6 +17,7 @@ server.name = 'API';
 const corsOptions = {
   origin: 'https://client-xul-solar.vercel.app', // Reemplaza con la URL de tu cliente
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
 };
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
