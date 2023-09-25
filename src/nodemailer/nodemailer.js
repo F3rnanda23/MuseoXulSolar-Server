@@ -48,10 +48,10 @@ const sendEmail = async (user)=>{
             <body>
                 <div class="es-wrapper-color">
                     <!--[if gte mso 9]>
-                  <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-                    <v:fill type="tile" color="#f6f6f6"></v:fill>
-                  </v:background>
-                <![endif]-->
+                        <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+                            <v:fill type="tile" color="#f6f6f6"></v:fill>
+                        </v:background>
+                    <![endif]-->
                     <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
                         <tbody>
                             <tr>
@@ -111,14 +111,14 @@ const sendEmail = async (user)=>{
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td align="center" class="esd-block-button">
-                                                                                                    <!--[if mso]><a href="" target="_blank" hidden>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="" 
+                                                                                                    <!--[if mso]><a href="https://client-xul-solar.vercel.app/" target="_blank" hidden>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://client-xul-solar.vercel.app/" 
                             style="height:24px; v-text-anchor:middle; width:299px" arcsize="50%" strokecolor="#2cb543" strokeweight="2px" fillcolor="#ee8d2c">
-                <w:anchorlock></w:anchorlock>
-                <center style='color:#ffffff; font-family:arial, "helvetica neue", helvetica, sans-serif; font-size:8px; font-weight:400; line-height:8px;  mso-text-raise:1px'>Ingresa a tu perfil aqui</center>
-              </v:roundrect></a>
+                    <w:anchorlock></w:anchorlock>
+                    <center style='color:#ffffff; font-family:arial, "helvetica neue", helvetica, sans-serif; font-size:8px; font-weight:400; line-height:8px;  mso-text-raise:1px'>Ingresa a tu perfil aqui</center>
+                </v:roundrect></a>
             <![endif]-->
-                                                                                                    <!--[if !mso]><!-- --><span class="msohide es-button-border" style="background: #ee8d2c; border-radius: 50px;"><a href class="es-button es-button-1695348666153" target="_blank" style="background: #ee8d2c; border-radius: 50px; padding: 0px 50px; mso-border-alt: 10px solid #ee8d2c;">Ingresa a tu perfil aqui</a></span>
+                                                                                                    <!--[if !mso]><!-- --><span class="msohide es-button-border" style="background: #ee8d2c; border-radius: 50px;"><a href="https://client-xul-solar.vercel.app/" class="es-button es-button-1695348666153" target="_blank" style="background: #ee8d2c; border-radius: 50px; padding: 0px 50px; mso-border-alt: 10px solid #ee8d2c">Ingresa a tu perfil aqui</a></span>
                                                                                                     <!--<![endif]-->
                                                                                                 </td>
                                                                                             </tr>
@@ -151,6 +151,9 @@ const sendEmail = async (user)=>{
                                                                                     <table cellpadding="0" cellspacing="0" width="100%">
                                                                                         <tbody>
                                                                                             <tr>
+                                                                                                <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="https://xqhbjc.stripocdn.email/content/guids/CABINET_a794c7fe27112983d83c33e16d0c20a830ef48724ff2d395cddb97ec1ad716f6/images/03_iGI.png" alt style="display: block;" width="285"></a></td>
+                                                                                            </tr>
+                                                                                            <tr>
                                                                                                 <td align="center" class="esd-block-social" style="font-size:0">
                                                                                                     <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social">
                                                                                                         <tbody>
@@ -163,22 +166,6 @@ const sendEmail = async (user)=>{
                                                                                                     </table>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
-                                                                    <table cellpadding="0" cellspacing="0" width="100%">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td width="500" class="esd-container-frame" align="center" valign="top">
-                                                                                    <table cellpadding="0" cellspacing="0" width="100%">
-                                                                                        <tbody>
                                                                                             <tr>
                                                                                                 <td align="center" class="esd-block-text">
                                                                                                     <p>Fundación Pan Klub - Museo Xul Solar</p>
