@@ -92,6 +92,13 @@ const buscarUsuarioPorEmail = async (email) => {
       }
   };
 
+  const asignarSuscripcionUser = async({usuarioId}) =>{
+    const user = await Usuario.findByPk(usuarioId)
+    if (!user) {
+       throw new Error('Usuario not found');
+      }
+  }
+
 module.exports = {
     createUsuario,
     deleteLogicUser,
