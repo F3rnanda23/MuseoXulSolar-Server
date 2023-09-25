@@ -23,10 +23,10 @@ const idActHandler = async (req, res) => {
 
 
 const createActivityHandler = async (req, res) => {
-    const { date, name, description, image, hora} = req.body;
-    // let images = req.files
+    const { date, name, description , hora} = req.body;
+    let images = req.files
     try {
-        const activities = await postActivity({ date, name, image, description, hora });
+        const activities = await postActivity({ date, name, images, description, hora });
         res.status(200).json(activities)
     } catch (error) {
         res.status(404).json({ error: error.message })
