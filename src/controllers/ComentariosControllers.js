@@ -3,8 +3,9 @@
 const { Comentarios, Usuario } = require("../db");
 const { Op } = require("sequelize");
 
-const postComentarios = async ({ description, date, UsuarioId, rating }) => {
+const postComentarios = async ({ description, date, UsuarioId, rating, email }) => {
   // Busca al usuario que está creando el comentario
+  console.log('aca en controler', email);
   const usuario = await Usuario.findByPk(UsuarioId);
 
   if (!usuario) {
@@ -16,7 +17,8 @@ const postComentarios = async ({ description, date, UsuarioId, rating }) => {
     description,
     date,
     UsuarioId,
-    rating
+    rating,
+    email
   });
 
   // Asocia el comentario al usuario
