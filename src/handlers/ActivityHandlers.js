@@ -1,15 +1,15 @@
-const { 
-    postActivity, 
-    allActivity, 
-    editActivity, 
-    deleteLogic, 
+const {
+    postActivity,
+    allActivity,
+    editActivity,
+    deleteLogic,
     restoreLogic,
     searchByName,
     idAct
- } = require("../controllers/ActivityController.js");
+} = require("../controllers/ActivityController.js");
 
 
- const idActHandler = async (req, res) => {
+const idActHandler = async (req, res) => {
     const { id } = req.params;
     try {
         const getId = await idAct(id);
@@ -23,7 +23,8 @@ const {
 
 
 const createActivityHandler = async (req, res) => {
-    const { date, name, image, description, hora } = req.body;
+    const { date, name, description, image, hora} = req.body;
+    // let images = req.files
     try {
         const activities = await postActivity({ date, name, image, description, hora });
         res.status(200).json(activities)
@@ -33,9 +34,9 @@ const createActivityHandler = async (req, res) => {
 }
 
 const allActivityHandler = async (req, res) => {
-    const {name} = req.query;
+    const { name } = req.query;
     try {
-        const getActivities = name? await searchByName(name): await allActivity();
+        const getActivities = name ? await searchByName(name) : await allActivity();
         res.status(200).json(getActivities);
     } catch (error) {
         res.status(404).json({ error: error.message });

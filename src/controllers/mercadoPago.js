@@ -16,11 +16,12 @@ const pagar = (req, res) => {
         title: req.body.description,
         unit_price: Number(req.body.price),
         quantity: Number(req.body.quantity),
+        currency_id:'USD'
       },  
     ],
     back_urls: {
-      success: "http://localhost:5173/",
-      failure: "http://localhost:5173/",
+      success: "https://client-xul-solar.vercel.app/",
+      failure: "https://client-xul-solar.vercel.app/",
     },
     auto_return: "approved",
   };

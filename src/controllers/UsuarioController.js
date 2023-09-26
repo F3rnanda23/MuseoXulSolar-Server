@@ -1,8 +1,9 @@
-const { Usuario } = require("../db.js");
+const { Usuario, Comentarios } = require("../db.js");
+
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 
-const createUsuario = async ({ birthday, name, phone, password, admin, email }) => {
+const createUsuario = async ({ birthday, name, phone, password, admin, email, }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -15,7 +16,9 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email }) 
         password: hashedPassword,//* Guarda la contraseña hasheada
         admin
     });
+    
     return postUsuario;
+
 };
 
 const allUser = async () => {
@@ -74,11 +77,34 @@ const loginUser = async (email, password) => {
 
 };
 
+const buscarUsuarioPorEmail = async (email) => {
+    try {
+        // Realiza la búsqueda del usuario en la base de datos (esto puede variar según tu tecnología de base de datos)
+        const usuario = await Usuario.findOne({ where: {email} });
+  
+        if (usuario) {
+          throw new Error("Ya existe un usuario con este correo electrónico");
+        }
+  
+        return usuario;
+      } catch (error) {
+        throw error;
+      }
+  };
+
+  const buscarEmailConGoolge = async (email) => {
+    const userInfo = Usuario.findOne({where: {email} })
+
+    return userInfo;
+  }
+
 module.exports = {
     createUsuario,
     deleteLogicUser,
     restoreLogicUser,
     allUser,
     editUser,
-    loginUser
+    loginUser,
+    buscarUsuarioPorEmail,
+    buscarEmailConGoolge
 }

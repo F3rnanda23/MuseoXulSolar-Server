@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       name: {
@@ -26,10 +26,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      hora:{
-        type: DataTypes.TIME,
+      hora: {
+        type: DataTypes.STRING,
         allowNull: false
-      }
+      },
     },
     {
       paranoid: true,
