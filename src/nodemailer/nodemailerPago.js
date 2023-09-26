@@ -1,11 +1,8 @@
-require('dotenv').config();
 const nodemailer = require("nodemailer")
-const {
-    PASS_GOOGLE
-} = process.env;
 
-const sendEmail = async () => {
-    const user = "juaco.enero9@gmail.com"
+
+const sendEmailPago = async (user) => {
+    
     try {
         const config = {
             host: `smtp.gmail.com`,
@@ -13,8 +10,9 @@ const sendEmail = async () => {
             auth: {
                 user: `museoxulsolarr@gmail.com`,
                 pass: "pzlk ycnj lvoe okdi"
-            },
+            }
         }
+
         const mensaje = {
             from: `museoxulsolarr@gmail.com`,
             to: user,
@@ -197,11 +195,7 @@ const sendEmail = async () => {
 
 
 }
-console.log('====================================');
-console.log(PASS_GOOGLE);
-console.log('====================================');
-sendEmail();
 
 module.exports = {
-    sendEmail
+    sendEmailPago
 }
