@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const {Usuario} = require('./Usuario')
+const { Usuario } = require('./Usuario')
 
 module.exports = (sequelize) => {
   sequelize.define(
@@ -25,8 +25,18 @@ module.exports = (sequelize) => {
           model: Usuario,
           key: 'id', // Nombre del campo en el modelo Usuario que se relaciona con la clave primaria
         },
+      },
+      rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      email: {
+        type:DataTypes.STRING,
+        allowNull :true,
+        default: 'Anonimo'
+
+      }
     },
-},
     {
       paranoid: true,
       timeStamp: true,
