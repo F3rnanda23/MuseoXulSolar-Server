@@ -74,7 +74,7 @@ const editarUsuario = async (req, res) => {
 
 const handleLogin = async (req, res) => {
     const { email, password } = req.body;
-    const { set, save } = req.session
+    const { set, save } = req.session;
     try {
         const result = await loginUser(email, password);
         const { id, name } = result;
@@ -97,11 +97,15 @@ const handleLogin = async (req, res) => {
                 }
             });
             res.status(200).json({ success: true, message: "Inicio de sesión exitoso", id, name, email });
+        } else {
+            // Manejar el caso en el que el inicio de sesión falla debido a un correo electrónico o contraseña incorrectos.
+            res.status(401).json({ success: false, message: "El correo electrónico o la contraseña son incorrectos" });
         }
     } catch (error) {
-        res.status(401).json(error.message);
+        res.status(500).json({ success: false, message: "Error interno del servidor" });
     }
 };
+
 
 const handleLoginGoogle = async (req, res) => {
     
