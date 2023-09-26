@@ -90,38 +90,33 @@ const handleLogin = async (req, res) => {
   const { email, password } = req.body;
   const { set, save } = req.session;
   try {
-    const result = await loginUser(email, password);
-    const { id, name } = result;
+      const result = await loginUser(email, password);
+      const { id, name } = result;
 
-    if (result.success) {
-      // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
+      if (result.success) {
+          // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
 
-      // Ejemplo de establecimiento de sesión utilizando set:
-      req.session.user = {
-        id,
-        name,
-        email,
-      };
+          // Ejemplo de establecimiento de sesión utilizando set:
+          req.session.user = {
+              id,
+              name,
+              email,
+          };
 
-      // Luego, guarda la sesión para asegurarte de que los cambios se apliquen.
-      req.session.save((err) => {
-        if (err) {
-          // Maneja los errores de guardado de sesión si es necesario.
-          console.error("Error al guardar la sesión:", err);
-        }
-      });
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Inicio de sesión exitoso",
-          id,
-          name,
-          email,
-        });
-    }
+          // Luego, guarda la sesión para asegurarte de que los cambios se apliquen.
+          req.session.save((err) => {
+              if (err) {
+                  // Maneja los errores de guardado de sesión si es necesario.
+                  console.error("Error al guardar la sesión:", err);
+              }
+          });
+          res.status(200).json({ success: true, message: "Inicio de sesión exitoso", id, name, email });
+      } else {
+          // Manejar el caso en el que el inicio de sesión falla debido a un correo electrónico o contraseña incorrectos.
+          res.status(401).json({ success: false, message: "El correo electrónico o la contraseña son incorrectos" });
+      }
   } catch (error) {
-    res.status(401).json(error.message);
+      res.status(500).json({ success: false, message: "Error interno del servidor" });
   }
 };
 
