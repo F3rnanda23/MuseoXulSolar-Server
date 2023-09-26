@@ -1,10 +1,10 @@
 const { postSuscripciones, getSuscripciones } = require("../controllers/SuscripcionesController");
 
 const postSuscripcionesHandler = async (req, res) => {
-  const { tipo, date } = req.body;
+
   try {
-    const patrocinios = await postSuscripciones({ tipo, date });
-    res.status(200).json(patrocinios);
+    const suscripcion = await postSuscripciones(req.body);
+    res.status(200).json(suscripcion);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

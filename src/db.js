@@ -36,8 +36,8 @@ const { Actividades, Exposiciones, Obras, Patrocinios, Usuario, Comentarios,Susc
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-
-Usuario.hasOne(Suscripciones, {foreignKey: "usuarioId"})
+Usuario.hasMany(Suscripciones, { foreignKey: "usuarioId" });
+Suscripciones.belongsTo(Usuario, {foreignKey: "usuarioId"})
 Usuario.hasMany(Comentarios, { foreignKey: 'UsuarioId' });
 Comentarios.belongsTo(Usuario, { foreignKey: 'UsuarioId' });
 Usuario.hasMany(Actividades, {foreignKey:"UsuarioXActividades"})

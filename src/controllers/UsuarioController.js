@@ -1,4 +1,4 @@
-const { Usuario, Comentarios } = require("../db.js");
+const { Usuario, Suscripciones, Comentarios } = require("../db.js");
 
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
@@ -23,9 +23,20 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email,sus
 };
 
 const allUser = async () => {
-    const findUser = await Usuario.findAll();
+    const findUser = await Usuario.findAll({
+        include: [
+            {
+                model: Suscripciones,
+                attributes: ['tipo', 'date'],
+            },
+            {
+                model: Comentarios,
+                attributes: ['description', 'date'],
+            },
+        ],
+    });
     return findUser;
-};
+}
 
 const deleteLogicUser = async (id) => {
     const deleteUser = await Usuario.destroy({ where: { id } });
