@@ -10,23 +10,31 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false,
       },
-     tipo:{
+      tipo: {
         type: DataTypes.STRING,
         allowNull: false,
-     },
-     date:{
-        type: DataTypes.DATE,
-        allowNull: false
-     },
-     usuarioId: {
+      },
+      date: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      usuarioId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true, // Esto garantiza que un usuario tenga una sola suscripción
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      subscripcion: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
     },
     {
       paranoid: true,
-      timeStamp: true
+      timeStamp: true,
     }
   );
 };

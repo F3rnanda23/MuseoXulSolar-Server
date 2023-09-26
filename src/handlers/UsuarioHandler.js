@@ -1,4 +1,5 @@
 const {
+<<<<<<< HEAD
   createUsuario,
   deleteLogicUser,
   restoreLogicUser,
@@ -6,6 +7,16 @@ const {
   editUser,
   loginUser,
   buscarUsuarioPorEmail,
+=======
+    createUsuario,
+    deleteLogicUser,
+    restoreLogicUser,
+    allUser,
+    editUser,
+    loginUser,
+    buscarUsuarioPorEmail, 
+    buscarEmailConGoolge
+>>>>>>> b157cc95a06b68044c51750dfbe812e8e0a54187
 } = require("../controllers/UsuarioController.js");
 const { sendEmail } = require("../nodemailer/nodemailer.js");
 
@@ -125,6 +136,7 @@ const handleLogin = async (req, res) => {
 };
 
 const handleLoginGoogle = async (req, res) => {
+<<<<<<< HEAD
   try {
     // Firebase ya gestionó el inicio de sesión con Google, así que el usuario ya está autenticado.
     // Puedes obtener información sobre el usuario desde Firebase si es necesario.
@@ -152,6 +164,28 @@ const handleLoginGoogle = async (req, res) => {
   }
 };
 
+=======
+    
+        const { email } = req.body 
+    try {
+        // Firebase ya gestionó el inicio de sesión con Google, así que el usuario ya está autenticado.
+
+       // Puedes obtener información sobre el usuario desde Firebase si es necesario.
+  const responseWithUserInfo = await buscarEmailConGoolge(email);
+      // Suponiendo que req.user contiene la información del usuario autenticado
+        
+        // Aquí puedes realizar cualquier acción adicional que necesites con la información del usuario.
+        // Por ejemplo, almacenar el usuario en tu base de datos o realizar alguna lógica personalizada.
+
+        res.status(200).json({ success: true, message: "Inicio de sesión con Google exitoso", responseWithUserInfo });
+    } catch (error) {
+        // Manejar errores aquí
+        console.error("Error en el inicio de sesión con Google:", error);
+        res.status(500).json({ success: false, message: "Error en el inicio de sesión con Google" });
+    }
+}
+
+>>>>>>> b157cc95a06b68044c51750dfbe812e8e0a54187
 module.exports = {
   loginUserHandler,
   deleteUserLogic,

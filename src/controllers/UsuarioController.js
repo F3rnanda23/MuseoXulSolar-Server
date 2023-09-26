@@ -17,7 +17,9 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email,sus
         admin,
         suscripcion
     });
+    
     return postUsuario;
+
 };
 
 const allUser = async () => {
@@ -92,11 +94,18 @@ const buscarUsuarioPorEmail = async (email) => {
       }
   };
 
+<<<<<<< HEAD
   const asignarSuscripcionUser = async({usuarioId}) =>{
     const user = await Usuario.findByPk(usuarioId)
     if (!user) {
        throw new Error('Usuario not found');
       }
+=======
+  const buscarEmailConGoolge = async (email) => {
+    const userInfo = Usuario.findOne({where: {email} })
+
+    return userInfo;
+>>>>>>> b157cc95a06b68044c51750dfbe812e8e0a54187
   }
 
 module.exports = {
@@ -106,5 +115,6 @@ module.exports = {
     allUser,
     editUser,
     loginUser,
-    buscarUsuarioPorEmail
+    buscarUsuarioPorEmail,
+    buscarEmailConGoolge
 }
