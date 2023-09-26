@@ -93,15 +93,15 @@ const handleLogin = async (req, res) => {
         const result = await loginUser(email, password);
         const { id, name } = result;
 
-    if (result.success) {
-      // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
+      if (result.success) {
+          // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
 
-      // Ejemplo de establecimiento de sesión utilizando set:
-      req.session.user = {
-        id,
-        name,
-        email,
-      };
+          // Ejemplo de establecimiento de sesión utilizando set:
+          req.session.user = {
+              id,
+              name,
+              email,
+          };
 
             // Luego, guarda la sesión para asegurarte de que los cambios se apliquen.
             req.session.save((err) => {
