@@ -1,18 +1,37 @@
-const { Suscripciones } = require("../db");
+const { Suscripciones, Usuario } = require("../db");
 
-const postSuscripciones = async ({ tipo, date }) => {
-  const found = await Suscripciones.findOne({ where: { tipo } });
-  if (found) throw new Error("There is already a suscripcion with that name");
+const postSuscripciones = async ({ tipo, date, usuarioId, subscripcion }) => {
+// Busca al usuario que está creando el suscripcion
+const usuario = await Usuario.findByPk(usuarioId);
 
-  const newSuscripcion = await Suscripciones.create({ tipo, date });
-  return newSuscripcion;
+if (!usuario) {
+  throw new Error("Usuario no encontrado");
+}
+
+// Crea el suscripcion y asocia el usuario
+const suscripcion = await Suscripciones.create({
+  tipo,
+  date,
+  usuarioId,
+  subscripcion
+});
+
+// Asocia el suscripcion al usuario
+await suscripcion.setUsuario(usuario);
+
+return suscripcion;
 };
 
 const getSuscripciones = async () => {
-  const suscripcion = await Suscripciones.findAll();
-  return suscripcion;
-};
+  const getSuscripcion = await Suscripciones.findAll({
+    include: {
+      model: Usuario, // Nombre del modelo relacionado
+      attributes: ['id', 'email'], // Especifica las columnas que deseas incluir
+    },
+  });
 
+  return getSuscripcion;
+};
 module.exports = {
   postSuscripciones,
   getSuscripciones

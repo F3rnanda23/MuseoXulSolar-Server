@@ -1,4 +1,4 @@
-const { Usuario, Comentarios } = require("../db.js");
+const { Usuario, Suscripciones, Comentarios } = require("../db.js");
 
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
@@ -23,9 +23,20 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email,sus
 };
 
 const allUser = async () => {
-    const findUser = await Usuario.findAll();
+    const findUser = await Usuario.findAll({
+        include: [
+            {
+                model: Suscripciones,
+                attributes: ['tipo', 'date'],
+            },
+            {
+                model: Comentarios,
+                attributes: ['description', 'date'],
+            },
+        ],
+    });
     return findUser;
-};
+}
 
 const deleteLogicUser = async (id) => {
     const deleteUser = await Usuario.destroy({ where: { id } });
@@ -94,18 +105,10 @@ const buscarUsuarioPorEmail = async (email) => {
       }
   };
 
-<<<<<<< HEAD
-  const asignarSuscripcionUser = async({usuarioId}) =>{
-    const user = await Usuario.findByPk(usuarioId)
-    if (!user) {
-       throw new Error('Usuario not found');
-      }
-=======
   const buscarEmailConGoolge = async (email) => {
     const userInfo = Usuario.findOne({where: {email} })
 
     return userInfo;
->>>>>>> b157cc95a06b68044c51750dfbe812e8e0a54187
   }
 
 module.exports = {
