@@ -5,8 +5,8 @@ const {
     allUser,
     editUser,
     loginUser,
-    buscarUsuarioPorEmail, 
-    // buscarEmailConGoolge
+    buscarUsuarioPorEmail,
+    buscarEmailConGoolge
 } = require("../controllers/UsuarioController.js");
 const { sendEmail } = require("../nodemailer/nodemailer.js");
 
