@@ -4,7 +4,7 @@ const {
 } = process.env;
 
 
-const sendEmail = async (user)=>{
+const sendEmail = async (usuario)=>{
     try{
         const config = {
             host: `smtp.gmail.com`,
@@ -17,7 +17,7 @@ const sendEmail = async (user)=>{
     
         const mensaje ={
             from: `museoxulsolarr@gmail.com`,
-            to: user,
+            to: usuario,
             subject: `Suscripcion`,
             html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -203,7 +203,7 @@ const sendEmail = async (user)=>{
 
 
 }
-
+sendEmail("maximilianoa.castillorivero@gmail.com")
 
 module.exports = {
     sendEmail
