@@ -4,8 +4,9 @@ getComentarios} = require("../controllers/ComentariosControllers")
 const postComentariosHandler = async(req,res) =>{
    
     const {description, date, UsuarioId, rating, email} = req.body
+    console.log(req.body);
     try {
-        const commentPosteado = await postComentarios({description,email, date, UsuarioId, rating})
+        const commentPosteado = await postComentarios({description, email, date, UsuarioId, rating})
         console.log(commentPosteado);
         res.status(200).json(commentPosteado)
     } catch (error) {

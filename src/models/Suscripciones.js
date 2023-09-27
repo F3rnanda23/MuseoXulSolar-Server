@@ -16,13 +16,13 @@ module.exports = (sequelize) => {
       },
       tipo: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      date: {
+        type: DataTypes.STRING,
         allowNull: false,
-     },
-     date:{
-        type: DataTypes.DATE,
-        allowNull: false
-     },
-     usuarioId: {
+      },
+      usuarioId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true, // Esto garantiza que un usuario tenga una sola suscripción
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       },
       subscripcion: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
       }
     },
     {
