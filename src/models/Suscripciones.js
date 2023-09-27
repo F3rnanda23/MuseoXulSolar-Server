@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       tipo: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,10 +27,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true, // Esto garantiza que un usuario tenga una sola suscripción
       },
-      // email: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       subscripcion: {
         type: DataTypes.INTEGER,
         allowNull: false

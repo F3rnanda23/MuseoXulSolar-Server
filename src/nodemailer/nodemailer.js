@@ -1,7 +1,4 @@
 const nodemailer = require("nodemailer")
-const {
-  PASS_GOOGLE
-} = process.env;
 
 
 const sendEmail = async (user)=>{
@@ -11,14 +8,14 @@ const sendEmail = async (user)=>{
             port: 587,
             auth: {
                 user: `museoxulsolarr@gmail.com`,
-                pass: PASS_GOOGLE
+                pass: "pzlk ycnj lvoe okdi"
             }
         }
     
         const mensaje ={
             from: `museoxulsolarr@gmail.com`,
             to: user,
-            subject: `Suscripcion`,
+            subject: `Suscripcion a cuenta de usuario`,
             html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
             
