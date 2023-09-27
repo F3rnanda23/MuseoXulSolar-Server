@@ -1,6 +1,6 @@
 const { Suscripciones, Usuario } = require("../db");
 
-const postSuscripciones = async ({ tipo, date, usuarioId, subscripcion,email }) => {
+const postSuscripciones = async ({ tipo, date, usuarioId, subscripcion,email,name }) => {
 // Busca al usuario que está creando el suscripcion
 const usuario = await Usuario.findByPk(usuarioId);
 
@@ -14,7 +14,8 @@ const suscripcion = await Suscripciones.create({
   date,
   usuarioId,
   subscripcion,
-  email
+  email,
+  name
 });
 
 // Asocia el suscripcion al usuario
