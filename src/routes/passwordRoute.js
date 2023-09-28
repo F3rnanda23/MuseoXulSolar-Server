@@ -6,7 +6,7 @@ const {
 
 const routePassword = Router();
 
-routePassword.put("/restore",restorePasswordHandler);
+routePassword.put("/restore/:email",restorePasswordHandler);
 routePassword.put("/restablecer",restablecerContraseñaHandler);
 
 module.exports = routePassword;
