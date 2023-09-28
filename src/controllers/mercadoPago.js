@@ -6,7 +6,6 @@ const { idUser } = require("./UsuarioController");
 const { ACCESS_TOKEN } = process.env;
 
 mercadopago.configure({
-  // sandbox: true, variable para el modo de prueba de mp
   access_token: `${ACCESS_TOKEN}`,
 });
 

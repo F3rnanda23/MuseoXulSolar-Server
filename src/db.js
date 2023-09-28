@@ -39,11 +39,12 @@ const { Actividades, Exposiciones, Obras, Patrocinios, Usuario, Comentarios,Susc
 Usuario.hasMany(Suscripciones, { foreignKey: "usuarioId" });
 Suscripciones.belongsTo(Usuario, {foreignKey: "usuarioId"})
 Usuario.hasMany(Comentarios, { foreignKey: 'UsuarioId' });
-Comentarios.belongsTo(Usuario, { foreignKey: 'UsuarioId' });
-Usuario.hasMany(Actividades, {foreignKey:"UsuarioXActividades"})
-Usuario.hasMany(Obras, {foreignKey:"UsuarioXObras"})
-Usuario.hasMany(Exposiciones,{foreignKey:"UsuarioXExposiciones"})
-Usuario.hasMany(Patrocinios, {foreignKey:"UsuarioXPatrocinios"})
+Comentarios.belongsTo(Usuario, {foreignKey: 'UsuarioId' });
+Usuario.belongsToMany(Actividades,{ through: 'reservas'});
+Actividades.belongsToMany(Usuario,{ through: 'reservas'});
+Usuario.hasMany(Obras, {foreignKey:"UsuarioXObras"});
+Usuario.hasMany(Exposiciones,{foreignKey:"UsuarioXExposiciones"});
+Usuario.hasMany(Patrocinios, {foreignKey:"UsuarioXPatrocinios"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
