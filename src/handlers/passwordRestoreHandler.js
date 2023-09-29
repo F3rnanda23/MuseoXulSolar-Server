@@ -3,12 +3,14 @@ const {
     restablecerContraseña
 } = require("../controllers/passwordRestoreController");
 const {sendEmailPassword} = require("../nodemailer/nodemailerPassword");
+const {Usuario} = require("../db.js");
 
 const restorePasswordHandler = async(req,res)=>{
-    const {email} = req.body;
+    const {email} = req.params;
     try {
         const restore = await restorePassword(email);
-        sendEmailPassword(email);
+        const user = await Usuario.findOne({where: {email:email}})
+        sendEmailPassword(email,user.reset_password_token);
         res.status(200).json(restore);
     } catch (error) {
         res.status(404).json({error: error.messagge});

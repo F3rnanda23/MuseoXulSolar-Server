@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       },
       tipo: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       date: {
         type: DataTypes.STRING,
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       },
       subscripcion: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
       }
     },
     {
