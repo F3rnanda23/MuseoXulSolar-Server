@@ -12,6 +12,10 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false,
       },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -40,7 +44,7 @@ module.exports = (sequelize) => {
       },
       reset_password_token: {
         type: DataTypes.STRING,
-        allowNull:true // Almacena el token de restablecimiento de contraseña
+        allowNull: true // Almacena el token de restablecimiento de contraseña
       },
       reset_password_expires: {
         type: DataTypes.DATE, // Almacena la fecha de vencimiento del token
