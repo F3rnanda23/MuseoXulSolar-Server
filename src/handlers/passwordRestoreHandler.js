@@ -10,7 +10,7 @@ const restorePasswordHandler = async(req,res)=>{
     try {
         const restore = await restorePassword(email);
         const user = await Usuario.findOne({where: {email:email}})
-        sendEmailPassword(email,user.reset_password_token);
+        await sendEmailPassword(email,user.reset_password_token);
         res.status(200).json(restore);
     } catch (error) {
         res.status(404).json({error: error.messagge});
