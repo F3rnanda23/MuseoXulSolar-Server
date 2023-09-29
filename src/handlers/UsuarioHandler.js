@@ -81,11 +81,12 @@ const restoreUserLogic = async (req, res) => {
 
 const editarUsuario = async (req, res) => {
   const { id } = req.params;
-  const { name, birthday, phone, password, admin, suscripcion } = req.body;
+  const { name, birthday, phone, password, admin, suscripcion,image } = req.body;
   try {
     const edit = editUser({
       id,
       name,
+      image,
       birthday,
       phone,
       password,
