@@ -11,7 +11,7 @@ const postComentarios = async ({ description, date, UsuarioId, rating, email }) 
   if (!usuario) {
     throw new Error("Usuario no encontrado");
   }
-
+ 
   // Crea el comentario y asocia el usuario
   const comentario = await Comentarios.create({
     description,
