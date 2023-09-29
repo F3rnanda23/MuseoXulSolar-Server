@@ -1,15 +1,16 @@
-const { Usuario, Suscripciones, Comentarios } = require("../db.js");
+const { Usuario, Suscripciones, Comentarios, Actividades } = require("../db.js");
 
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 
-const createUsuario = async ({ birthday, name, phone, password, admin, email,suscripcion }) => {
+const createUsuario = async ({ birthday, name, phone, password, admin, email, suscripcion,image }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const postUsuario = await Usuario.create({
         birthday,
+        image,
         name,
         email,
         phone,
@@ -17,7 +18,7 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email,sus
         admin,
         suscripcion
     });
-    
+
     return postUsuario;
 
 };
@@ -33,9 +34,33 @@ const allUser = async () => {
                 model: Comentarios,
                 attributes: ['description', 'date'],
             },
+            {
+                model: Actividades,
+                attributes: ['description', 'date', "name"],
+            },
         ],
     });
     return findUser;
+}
+const idUser = async (id) => {
+    const found = await Usuario.findOne({
+        where: { id },
+        include: [
+            {
+                model: Suscripciones,
+                attributes: ['tipo', 'date'],
+            },
+            {
+                model: Comentarios,
+                attributes: ['description', 'date'],
+            },
+            {
+                model: Actividades,
+                attributes: ['description', 'date', "name"],
+            },
+        ],
+    })
+    return found
 }
 
 const deleteLogicUser = async (id) => {
@@ -48,13 +73,13 @@ const restoreLogicUser = async (id) => {
     return restores;
 };
 
-const editUser = async ({ id, name, birthday, phone, password, admin, suscripcion }) => {
+const editUser = async ({ id, name, birthday, phone, password, admin, suscripcion,image }) => {
     const users = await Usuario.findByPk(id);
 
     if (!users) {
         throw new Error("User no encontrado");
     };
-
+    users.image = image;
     users.name = name;
     users.birthday = birthday;
     users.phone = phone;
@@ -82,7 +107,7 @@ const loginUser = async (email, password) => {
     const { id, name, } = user;
     if (passwordMatch) {
         // La contraseña es válida, el usuario puede iniciar sesión
-        return { success: true, email,id,name };
+        return { success: true, email, id, name };
     } else {
         // La contraseña no coincide, devuelve un mensaje de error
         return { success: false, message: "Correo electrónico o contraseña incorrecta." };
@@ -93,23 +118,23 @@ const loginUser = async (email, password) => {
 const buscarUsuarioPorEmail = async (email) => {
     try {
         // Realiza la búsqueda del usuario en la base de datos (esto puede variar según tu tecnología de base de datos)
-        const usuario = await Usuario.findOne({ where: {email} });
-  
-        if (usuario) {
-          throw new Error("Ya existe un usuario con este correo electrónico");
-        }
-  
-        return usuario;
-      } catch (error) {
-        throw error;
-      }
-  };
+        const usuario = await Usuario.findOne({ where: { email } });
 
-  const buscarEmailConGoolge = async (email) => {
-    const userInfo = Usuario.findOne({where: {email} })
+        if (usuario) {
+            throw new Error("Ya existe un usuario con este correo electrónico");
+        }
+
+        return usuario;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const buscarEmailConGoolge = async (email) => {
+    const userInfo = Usuario.findOne({ where: { email } })
 
     return userInfo;
-  }
+}
 
 module.exports = {
     createUsuario,
@@ -119,5 +144,6 @@ module.exports = {
     editUser,
     loginUser,
     buscarUsuarioPorEmail,
-    buscarEmailConGoolge
+    buscarEmailConGoolge,
+    idUser
 }

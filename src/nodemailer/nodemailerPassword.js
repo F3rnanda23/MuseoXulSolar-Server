@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer")
 
 
-const sendEmailPassword = async (user) => {
+const sendEmailPassword = async (user,token) => {
     
     try {
         const config = {
@@ -16,8 +16,8 @@ const sendEmailPassword = async (user) => {
         const mensaje = {
             from: `museoxulsolarr@gmail.com`,
             to: user,
-            subject: `Informacion del pago`,
-            html: `<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta http-equiv="Content-Security-Policy" content="script-src &#39;none&#39;; connect-src &#39;none&#39;; object-src &#39;none&#39;; form-action &#39;none&#39;;">
+            subject: `Reestablecimiento de la contraseña`,
+            html:`<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta http-equiv="Content-Security-Policy" content="script-src &#39;none&#39;; connect-src &#39;none&#39;; object-src &#39;none&#39;; form-action &#39;none&#39;;">
             <meta charset="UTF-8">
             <meta content="width=device-width, initial-scale=1" name="viewport">
             <meta name="x-apple-disable-message-ction">
@@ -36,7 +36,20 @@ const sendEmailPassword = async (user) => {
             </o:OfficeDocumentSettings>
         </xml>
         <![endif]-->
-        </head>
+        <!--[if mso]>
+         <style type="text/css">
+             ul {
+          margin: 0 !important;
+          }
+          ol {
+          margin: 0 !important;
+          }
+          li {
+          margin-left: 47px !important;
+          }
+        
+         </style><![endif]
+        --></head>
         
         <body>
             <div class="es-wrapper-color">
@@ -67,7 +80,7 @@ const sendEmailPassword = async (user) => {
                                                                                             <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="https://ssvuvq.stripocdn.email/content/guids/CABINET_a4c8b4ed97aaff6bb1de996d69394f17cbd55b421f1be3cfd243767d53e62450/images/museologo.png" alt="" style="display: block;" width="470"></a> </td>
                                                                                         </tr><tr>
                     <td align="center" class="esd-block-text">
-                        <p>Hemos recibido tu peticion para reestablecer la contraseña</p>            </td>
+                        <p>Hemos recibido tu peticion para reestablecer la contraseña</p><p>​</p><p>este es tu token de reestablecimiento, no lo compartas con nadie:</p><p>TOKEN:</p><p>${token}</p>            </td>
                 </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -101,13 +114,13 @@ const sendEmailPassword = async (user) => {
                                                                                         <tr>
                                                                                             <td align="center" class="esd-block-button">
                                                                                                 
-                                                                                                <!--[if mso]><a href="https://client-xul-solar.vercel.app/" target="_blank" hidden>
-            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://client-xul-solar.vercel.app/" 
+                                                                                                <!--[if mso]><a href="http://localhost:5173/token" target="_blank" hidden>
+            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="http://localhost:5173/token" 
                         style="height:24px; v-text-anchor:middle; width:347px" arcsize="50%" strokecolor="#2cb543" strokeweight="1px" fillcolor="#ee8d2c">
                 <w:anchorlock></w:anchorlock>
                 <center style='color:#ffffff; font-family:arial, "helvetica neue", helvetica, sans-serif; font-size:8px; font-weight:400; line-height:8px;  mso-text-raise:1px'>Reestablece tu contraseña aqui</center>
             </v:roundrect></a>
-        <![endif]--><!--[if !mso]--><!-- --><span class="es-button-border" style="background: #ee8d2c; border-radius: 50px;"><a href="https://client-xul-solar.vercel.app/" class="es-button es-button-1695348666153" target="_blank" style="background: #ee8d2c; border-radius: 50px; padding: 0px 50px; mso-border-alt: 10px solid #ee8d2c">Reestablece tu contraseña aqui</a></span><!--<![endif]-->
+        <![endif]--><!--[if !mso]--><!-- --><span class="es-button-border" style="background: #ee8d2c; border-radius: 50px;"><a href="http://localhost:5173/token" class="es-button es-button-1695348666153" target="_blank" style="background: #ee8d2c; border-radius: 50px; padding: 0px 50px; mso-border-alt: 10px solid #ee8d2c">Reestablece tu contraseña aqui</a></span><!--<![endif]-->
                                                                                                 
                                                                                             </td>
                                                                                         </tr>
