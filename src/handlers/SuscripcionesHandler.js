@@ -2,9 +2,11 @@ const { postSuscripciones, getSuscripciones } = require("../controllers/Suscripc
 const { sendEmailSuscripcion } = require("../nodemailer/nodemailerSuscripcion");
 
 const postSuscripcionesHandler = async (req, res) => {
+  console.log(req.body);
+  const {date, usuarioId,email,name} = req.body
   try {
-    const suscripcion = await postSuscripciones(req.body);
-    const {email} = req.body;
+    const suscripcion = await postSuscripciones({date, usuarioId, email,name });
+    // const {email} = req.body;
     sendEmailSuscripcion(email);
     res.status(200).json(suscripcion);
   } catch (error) {
