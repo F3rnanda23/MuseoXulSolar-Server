@@ -3,13 +3,14 @@ const { Usuario, Suscripciones, Comentarios, Actividades } = require("../db.js")
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
 
-const createUsuario = async ({ birthday, name, phone, password, admin, email, suscripcion }) => {
+const createUsuario = async ({ birthday, name, phone, password, admin, email, suscripcion,image }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
 
     const postUsuario = await Usuario.create({
         birthday,
+        image,
         name,
         email,
         phone,
@@ -41,6 +42,26 @@ const allUser = async () => {
     });
     return findUser;
 }
+const idUser = async (id) => {
+    const found = await Usuario.findOne({
+        where: { id },
+        include: [
+            {
+                model: Suscripciones,
+                attributes: ['tipo', 'date'],
+            },
+            {
+                model: Comentarios,
+                attributes: ['description', 'date'],
+            },
+            {
+                model: Actividades,
+                attributes: ['description', 'date', "name"],
+            },
+        ],
+    })
+    return found
+}
 
 const deleteLogicUser = async (id) => {
     const deleteUser = await Usuario.destroy({ where: { id } });
@@ -52,13 +73,13 @@ const restoreLogicUser = async (id) => {
     return restores;
 };
 
-const editUser = async ({ id, name, birthday, phone, password, admin, suscripcion }) => {
+const editUser = async ({ id, name, birthday, phone, password, admin, suscripcion,image }) => {
     const users = await Usuario.findByPk(id);
 
     if (!users) {
         throw new Error("User no encontrado");
     };
-
+    users.image = image;
     users.name = name;
     users.birthday = birthday;
     users.phone = phone;
@@ -123,5 +144,6 @@ module.exports = {
     editUser,
     loginUser,
     buscarUsuarioPorEmail,
-    buscarEmailConGoolge
+    buscarEmailConGoolge,
+    idUser
 }
