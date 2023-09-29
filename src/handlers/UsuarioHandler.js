@@ -52,7 +52,7 @@ const loginUserHandler = async (req, res) => {
       admin,
       suscripcion
     });
-    sendEmail(email);
+    await sendEmail(email);
     res.status(200).json(postUser);
   } catch (error) {
     res.status(404).json({ error: error.message });
