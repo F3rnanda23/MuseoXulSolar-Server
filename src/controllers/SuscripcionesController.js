@@ -1,7 +1,11 @@
 const { Suscripciones, Usuario } = require("../db");
 
-const postSuscripciones = async ({ tipo, date, usuarioId, subscripcion,email,name }) => {
+const postSuscripciones = async ({ date, usuarioId,email,name }) => {
 // Busca al usuario que está creando el suscripcion
+console.log('controller' , usuarioId);
+console.log('controller' , date);
+console.log('controller' , email);
+console.log('controller' , name);
 const usuario = await Usuario.findByPk(usuarioId);
 
 if (!usuario) {
