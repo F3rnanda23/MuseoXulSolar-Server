@@ -7,10 +7,10 @@ const createUsuario = async ({ birthday, name, phone, password, admin, email, su
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
-
+    const imagen = image? image : "https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Background-PNG-Clip-Art-Image.png"
     const postUsuario = await Usuario.create({
         birthday,
-        image,
+        image: imagen,
         name,
         email,
         phone,
