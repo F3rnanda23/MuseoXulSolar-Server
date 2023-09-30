@@ -56,7 +56,7 @@ const idUser = async (id) => {
             },
             {
                 model: Actividades,
-                attributes: ['description', 'date', "name"],
+                attributes: ['description', 'date', "name","image","id"],
             },
         ],
     })
