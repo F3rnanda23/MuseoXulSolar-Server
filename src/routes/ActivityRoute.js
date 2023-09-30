@@ -40,6 +40,27 @@ routerActivity.post("/reservar", async (req, res) => {
         return res.status(500).json({ message: "Error interno del servidor." });
     }
 });
+routerActivity.delete("/eliminarReserva", async (req, res) => {
+    try {
+        const { usuarioId, actividadId } = req.body;
+
+        // Verifica si el usuario y la actividad existen antes de eliminar la reserva
+        const usuario = await Usuario.findByPk(usuarioId);
+        const actividad = await Actividades.findByPk(actividadId);
+
+        if (!usuario || !actividad) {
+            return res.status(404).json({ message: "Usuario o actividad no encontrado." });
+        }
+
+        // Utiliza el método removeUsuarios o removeActividades para eliminar la reserva
+        await actividad.removeUsuarios(usuario);
+
+        return res.status(200).json({ message: "Reserva eliminada con éxito." });
+    } catch (error) {
+        console.error("Error al eliminar la reserva:", error);
+        return res.status(500).json({ message: "Error interno del servidor." });
+    }
+});
 
 
 
