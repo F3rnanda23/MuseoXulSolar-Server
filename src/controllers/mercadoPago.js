@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const mercadopago = require("mercadopago");
+const { idUser } = require("./UsuarioController");
 
 const { ACCESS_TOKEN } = process.env;
 
@@ -9,21 +10,38 @@ mercadopago.configure({
   access_token: `${ACCESS_TOKEN}`,
 });
 
-const pagar = (req, res) => {
+const pagar = async (req, res) => {
+
+  const { tipo, date, usuarioId, subscripcion, email, name ,description , price , quantity} = req.body;
+  let user = await idUser(usuarioId)
+  if(!user)
+  return res.status(404).send("no existe usuario")
+  if(user && user.Suscripciones.length>0){
+    return res.status(400).send("usuario ya tiene suscripcion")
+  }
   const preference = {
     items: [
       {
-        title: req.body.description,
-        unit_price: Number(req.body.price),
-        quantity: Number(req.body.quantity),
-        currency_id:'USD'
-      },  
+        title: description,
+        unit_price: Number(price),
+        quantity: Number(quantity),
+        currency_id: "USD",
+      },
     ],
     back_urls: {
-      success: "http://localhost:5173/",
-      failure: "http://localhost:5173/",
+      success: "https://client-xul-solar.vercel.app/",
+      failure: "https://client-xul-solar.vercel.app/",
     },
-    auto_return: "approved",
+    notification_url:
+      "https://a4bd-201-213-140-135.ngrok.io/pagar/webhook",
+      metadata: {
+        tipo,
+        date,
+        usuarioId,
+        subscripcion,
+        email,
+        name,
+      },
   };
   mercadopago.preferences
     .create(preference)
@@ -37,5 +55,5 @@ const pagar = (req, res) => {
 };
 
 module.exports = {
-    pagar
-}
+  pagar,
+};
