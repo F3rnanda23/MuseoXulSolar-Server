@@ -42,7 +42,7 @@ routerActivity.post("/reservar", async (req, res) => {
 });
 routerActivity.delete("/eliminarReserva", async (req, res) => {
     try {
-        const { usuarioId, actividadId } = req.body;
+        const { usuarioId, actividadId } = req.params;
 
         // Verifica si el usuario y la actividad existen antes de eliminar la reserva
         const usuario = await Usuario.findByPk(usuarioId);
