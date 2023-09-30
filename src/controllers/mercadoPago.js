@@ -44,16 +44,16 @@
 require("dotenv").config();
 
 const mercadopago = require("mercadopago");
-const { sendEmailPago } = require("../nodemailer/nodemailerPago");
+const {sendEmailPago} = require("../nodemailer/nodemailerPago");
 
 const { ACCESS_TOKEN } = process.env;
 
 mercadopago.configure({
-  access_token: `${ ACCESS_TOKEN }`,
+  access_token: `${ACCESS_TOKEN}`,
 });
 
 const pagar = async (req, res) => {
-  const { userEmail } = req.body;
+  const {userEmail} = req.body;
   const preference = {
     items: [
       {
@@ -72,12 +72,16 @@ const pagar = async (req, res) => {
   };
 
   try {
-    const response = await mercadopago.preferences.create(preference);
-    const init_point = response.body.init_point;
-    const id = response.body.id;
 
+    const response = await mercadopago.preferences.create(preference);
+    console.log(response);
+    const init_point = response.body.init_point;
+    console.log(init_point);
+    const id = response.body.id;
+    console.log(id);
     // Envía un correo electrónico cuando el pago es aprobado
-    await sendEmailPago(userEmail); // Asegúrate de proporcionar los datos necesarios a esta función si es necesario
+
+      await sendEmailPago(userEmail); // Asegúrate de proporcionar los datos necesarios a esta función si es necesario
 
     res.status(200).json({ init_point, id });
   } catch (error) {

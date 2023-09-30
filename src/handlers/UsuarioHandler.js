@@ -6,7 +6,8 @@ const {
     editUser,
     loginUser,
     buscarUsuarioPorEmail,
-    buscarEmailConGoolge
+    buscarEmailConGoolge,
+    idUser
 } = require("../controllers/UsuarioController.js");
 const { sendEmail } = require("../nodemailer/nodemailer.js");
 
@@ -19,8 +20,18 @@ const bringUsers = async (req, res) => {
   }
 };
 
+const searchIdUser = async(req,res)=>{
+  const {id} = req.params;
+  try {
+    const response = await idUser(id);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(404).json({error: error.message});
+  }
+}
+
 const loginUserHandler = async (req, res) => {
-  const { birthday, name, email, phone, password, admin, suscripcion } = req.body;
+  const { birthday, name, email, phone, password, admin, suscripcion,image } = req.body;
   try {
     const existingUser = await buscarUsuarioPorEmail(email);
 
@@ -34,13 +45,14 @@ const loginUserHandler = async (req, res) => {
     const postUser = await createUsuario({
       birthday,
       name,
+      image,
       email,
       phone,
       password,
       admin,
       suscripcion
     });
-    sendEmail(postUser.email);
+    await sendEmail(email);
     res.status(200).json(postUser);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -69,11 +81,12 @@ const restoreUserLogic = async (req, res) => {
 
 const editarUsuario = async (req, res) => {
   const { id } = req.params;
-  const { name, birthday, phone, password, admin, suscripcion } = req.body;
+  const { name, birthday, phone, password, admin, suscripcion,image } = req.body;
   try {
     const edit = editUser({
       id,
       name,
+      image,
       birthday,
       phone,
       password,
@@ -150,4 +163,5 @@ module.exports = {
   editarUsuario,
   handleLogin,
   handleLoginGoogle,
+  searchIdUser
 };
