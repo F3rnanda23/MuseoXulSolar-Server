@@ -5,7 +5,8 @@ const {
     deleteLogic,
     restoreLogic,
     searchByName,
-    idAct
+    idAct,
+    allActivityWithUsers
 } = require("../controllers/ActivityController.js");
 
 
@@ -42,6 +43,17 @@ const allActivityHandler = async (req, res) => {
         res.status(404).json({ error: error.message });
     }
 }
+
+const allActivityUserHandler = async (req, res) => {
+    
+    try {
+        const getActivities = await allActivityWithUsers();
+        res.status(200).json(getActivities);
+    } catch (error) {
+        res.status(404).json({ error: error.message });
+    }
+}
+
 
 const putActivityHandler = async (req, res) => {
     const { id } = req.params;
@@ -81,5 +93,6 @@ module.exports = {
     putActivityHandler,
     deleteActivity,
     restoreActivity,
-    idActHandler
+    idActHandler,
+    allActivityUserHandler
 }
