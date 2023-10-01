@@ -60,26 +60,26 @@ const allActivityWithUsers = async () => {
   const futureDate = new Date();
   futureDate.setDate(currentDate.getDate() + 7);
 
-  // Formatea las fechas para usarlas en la consulta
-  const currentDateFormatted = currentDate.toISOString().split('T')[0];
-  const futureDateFormatted = futureDate.toISOString().split('T')[0];
   const activities = await Actividades.findAll({
     include: [
-        {
-            model: Usuario,
-            attributes: ['id', `email`],
-            through: `reservas`,
-        }
+      {
+        model: Usuario,
+        attributes: ['id', 'email'],
+        through: 'reservas',
+      },
     ],
     where: {
       '$Usuarios.id$': { [Sequelize.Op.not]: null }, // Filtra actividades con usuarios asociados
       date: {
-        [Op.between]: [currentDateFormatted, futureDateFormatted], // Filtra por fecha entre hoy y los próximos 7 días
-      }
+        [Sequelize.Op.between]: [currentDate, futureDate], // Filtra por fecha entre hoy y los próximos 7 días
+      },
     },
-});
+    // Aquí puedes agregar más opciones de consulta si es necesario
+  });
+
   return activities;
-}
+};
+
 
 const editActivity = async ({ id, name, date, image, description }) => {
   //* Buscar la actividad por su ID
