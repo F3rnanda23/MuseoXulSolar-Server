@@ -5,12 +5,14 @@ const {
     putActivityHandler,
     deleteActivity,
     restoreActivity,
-    idActHandler
+    idActHandler,
+    allActivityUserHandler
 } = require("../handlers/ActivityHandlers.js");
 const { Actividades, Usuario } = require("../db.js");
 
 const routerActivity = Router();
 
+routerActivity.get("/usuario", allActivityUserHandler);
 routerActivity.get("/", allActivityHandler);
 routerActivity.post("/create", createActivityHandler);
 //* Rutas por /:id
