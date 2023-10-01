@@ -64,7 +64,7 @@ const allActivityWithUsers = async () => {
     include: [
       {
         model: Usuario,
-        attributes: ['id', 'email'],
+        attributes: ['id', 'email',"name"], // Selecciona solo las propiedades 'id' y 'email' del modelo Usuario
         through: 'reservas',
       },
     ],
@@ -74,11 +74,13 @@ const allActivityWithUsers = async () => {
         [Sequelize.Op.between]: [currentDate, futureDate], // Filtra por fecha entre hoy y los próximos 7 días
       },
     },
+    attributes: ['date', 'name'], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
     // Aquí puedes agregar más opciones de consulta si es necesario
   });
 
   return activities;
 };
+
 
 
 const editActivity = async ({ id, name, date, image, description }) => {
