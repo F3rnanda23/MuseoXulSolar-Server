@@ -1,5 +1,6 @@
-const { Actividades } = require("../db.js");
+const { Actividades, Usuario } = require("../db.js");
 const { Op } = require("sequelize");
+const Sequelize = require('sequelize');
 const { uploadCloud, deleteFile } = require("../tools/tools.js");
 const path = require("path");
 
@@ -41,9 +42,46 @@ const postActivity = async ({ date, name, image, description, hora }) => {
 }
 
 const allActivity = async () => {
-  const activities = await Actividades.findAll();
+  const activities = await Actividades.findAll({
+    include: [
+        {
+            model: Usuario,
+            attributes: ['id', `email`],
+        }
+    ],
+});
   return activities;
 }
+
+const allActivityWithUsers = async () => {
+  const currentDate = new Date();
+
+  // Define la fecha límite (por ejemplo, 7 días a partir de hoy)
+  const futureDate = new Date();
+  futureDate.setDate(currentDate.getDate() + 7);
+
+  const activities = await Actividades.findAll({
+    include: [
+      {
+        model: Usuario,
+        attributes: ['id', 'email',"name"], // Selecciona solo las propiedades 'id' y 'email' del modelo Usuario
+        through: 'reservas',
+      },
+    ],
+    where: {
+      '$Usuarios.id$': { [Sequelize.Op.not]: null }, // Filtra actividades con usuarios asociados
+      date: {
+        [Sequelize.Op.between]: [currentDate, futureDate], // Filtra por fecha entre hoy y los próximos 7 días
+      },
+    },
+    attributes: ['date', 'name'], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
+    // Aquí puedes agregar más opciones de consulta si es necesario
+  });
+
+  return activities;
+};
+
+
 
 const editActivity = async ({ id, name, date, image, description }) => {
   //* Buscar la actividad por su ID
@@ -81,5 +119,6 @@ module.exports = {
   deleteLogic,
   restoreLogic,
   searchByName,
-  idAct
+  idAct,
+  allActivityWithUsers
 };

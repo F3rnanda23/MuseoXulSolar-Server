@@ -5,12 +5,14 @@ const {
     putActivityHandler,
     deleteActivity,
     restoreActivity,
-    idActHandler
+    idActHandler,
+    allActivityUserHandler
 } = require("../handlers/ActivityHandlers.js");
 const { Actividades, Usuario } = require("../db.js");
 
 const routerActivity = Router();
 
+routerActivity.get("/usuario", allActivityUserHandler);
 routerActivity.get("/", allActivityHandler);
 routerActivity.post("/create", createActivityHandler);
 //* Rutas por /:id
@@ -40,7 +42,7 @@ routerActivity.post("/reservar", async (req, res) => {
         return res.status(500).json({ message: "Error interno del servidor." });
     }
 });
-routerActivity.delete("/eliminarReserva", async (req, res) => {
+routerActivity.delete("/eliminarReserva/:usuarioId/:actividadId", async (req, res) => {
     try {
         const { usuarioId, actividadId } = req.params;
 
