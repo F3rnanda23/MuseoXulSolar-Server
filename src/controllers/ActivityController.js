@@ -74,7 +74,7 @@ const allActivityWithUsers = async () => {
         [Sequelize.Op.between]: [currentDate, futureDate], // Filtra por fecha entre hoy y los próximos 7 días
       },
     },
-    attributes: ['date', 'name',"id"], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
+    attributes: ['date', 'name',"id", "hora"], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
     // Aquí puedes agregar más opciones de consulta si es necesario
   });
 
