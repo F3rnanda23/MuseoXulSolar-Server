@@ -3,9 +3,9 @@ const { sendEmailSuscripcion } = require("../nodemailer/nodemailerSuscripcion");
 
 const postSuscripcionesHandler = async (req, res) => {
   console.log(req.body);
-  const {date, usuarioId,email,name} = req.body
+  const {tipo, date, usuarioId,email,subscripcion,name} = req.body
   try {
-    const suscripcion = await postSuscripciones({date, usuarioId, email,name });
+    const suscripcion = await postSuscripciones(tipo, date, usuarioId, email, subscripcion, name);
     // const {email} = req.body;
     await sendEmailSuscripcion(email);
     res.status(200).json(suscripcion);
