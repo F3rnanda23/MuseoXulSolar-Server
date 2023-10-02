@@ -104,8 +104,8 @@ const handleLogin = async (req, res) => {
   const { set, save } = req.session;
   try {
       const result = await loginUser(email, password);
-      const { id, name } = result;
-
+      const { id, name, admin } = result;
+    console.log(admin);
       if (result.success) {
           // El inicio de sesión fue exitoso, puedes establecer la sesión del usuario y redirigirlo, o enviar una respuesta de éxito.
 
@@ -114,6 +114,7 @@ const handleLogin = async (req, res) => {
               id,
               name,
               email,
+              admin
           };
 
           // Luego, guarda la sesión para asegurarte de que los cambios se apliquen.
@@ -123,7 +124,7 @@ const handleLogin = async (req, res) => {
                   console.error("Error al guardar la sesión:", err);
               }
           });
-          res.status(200).json({ success: true, message: "Inicio de sesión exitoso", id, name, email });
+          res.status(200).json({ success: true, message: "Inicio de sesión exitoso", id, name, email, admin });
       } else {
           // Manejar el caso en el que el inicio de sesión falla debido a un correo electrónico o contraseña incorrectos.
           res.status(401).json({ success: false, message: "El correo electrónico o la contraseña son incorrectos" });
