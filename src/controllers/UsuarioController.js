@@ -56,7 +56,7 @@ const idUser = async (id) => {
             },
             {
                 model: Actividades,
-                attributes: ['description', 'date', "name","image","id"],
+                attributes: ['description', 'date', "name","image","id","hora"],
             },
         ],
     })
@@ -142,6 +142,11 @@ const buscarEmailConGoolge = async (email) => {
     return userInfo;
 }
 
+const buscarEmaiBloqueado = async(email)=>{
+    const response = await Usuario.findOne({where: {email}});
+    return response;
+}
+
 module.exports = {
     createUsuario,
     deleteLogicUser,
@@ -151,5 +156,6 @@ module.exports = {
     loginUser,
     buscarUsuarioPorEmail,
     buscarEmailConGoolge,
-    idUser
+    idUser,
+    buscarEmaiBloqueado
 }
