@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        email: {
+        userEmail: {
             type: DataTypes.STRING,
             allowNull: false, // Hacer que el campo no pueda ser nulo
             defaultValue: 'anonimo', // Establecer el valor predeterminado como 'anonimo'
