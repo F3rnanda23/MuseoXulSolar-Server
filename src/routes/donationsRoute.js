@@ -2,6 +2,7 @@ require("dotenv").config();
 const { Router } = require("express");
 const mercadopago = require("mercadopago");
 const { sendEmailDonations } = require("../nodemailer/nodemailerDonations.js");
+const {Donacion,} = require("../db");
 const routerMp = Router();
 const { ACCESS_TOKEN } = process.env;
 
@@ -31,10 +32,12 @@ routerMp.post("/", async (req, res) => {
             userEmail,
         },
     };
+  
     mercadopago.preferences
-      .create(preference)
-      .then((response) => {
-        res.json({ init_point: response.body.init_point });
+    .create(preference)
+    .then(async(response) => {
+      const result = await Donacion.create({quantity,userEmail})
+      res.json({ init_point: response.body.init_point, data: result });
       })
       .catch((error) => {
         console.log(error);
