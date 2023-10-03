@@ -19,7 +19,7 @@ router.use("/exposiciones", routerExposiciones );
 router.use("/obras", ObrasRoute);
 router.use("/patrocinios", PatrociniosRoute);
 router.use("/usuario", routerUsuario);
-router.use('/comentarios', routeComentarios);
+router.use('/comments', routeComentarios);
 router.use('/suscripcion', suscripcionRoute);
 
 
