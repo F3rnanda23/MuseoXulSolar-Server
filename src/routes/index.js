@@ -8,9 +8,10 @@ const routerMp = require('./MercadoPagoRoute.js');
 const routeComentarios = require("./ComentariosRoute.js");
 const suscripcionRoute = require('./SuscripcionesRoute.js');
 const routePassword = require("./passwordRoute.js")
+const routeDonation = require("./donationsRoute.js")
 const router = Router();
 
-
+router.use("/donations", routeDonation);
 router.use("/password", routePassword);
 router.use('/pagar',routerMp);
 router.use("/actividades", routerActivity);
