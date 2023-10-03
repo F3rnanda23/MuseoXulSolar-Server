@@ -9,7 +9,6 @@ const postComentariosHandler = async(req,res) =>{
         const commentPosteado = await postComentarios({description, email, date, UsuarioId, rating})
         console.log(commentPosteado);
         res.status(200).json(commentPosteado);
-        return
     } catch (error) {
         res.status(400).json({error:error.message})
     }
