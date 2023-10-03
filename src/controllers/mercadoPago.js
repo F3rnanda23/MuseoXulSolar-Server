@@ -32,7 +32,7 @@ const pagar = async (req, res) => {
       failure: "https://client-xul-solar.vercel.app/",
     },
     notification_url:
-      "https://server-xul-solar.vercel.app/pagar/webhook",
+      "https://server-xul-solar-ag97.vercel.app/pagar/webhook",
       metadata: {
         tipo,
         date,

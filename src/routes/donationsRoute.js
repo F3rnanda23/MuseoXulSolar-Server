@@ -27,7 +27,7 @@ routerMp.post("/", async (req, res) => {
       failure: "https://client-xul-solar.vercel.app/",
     },
     notification_url:
-      "https://server-xul-solar.vercel.app/donations/webhook",
+      "https://server-xul-solar-ag97.vercel.app/donations/webhook",
     metadata: {
       userEmail,
     },
