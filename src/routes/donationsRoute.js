@@ -5,6 +5,7 @@ const { sendEmailDonations } = require("../nodemailer/nodemailerDonations.js");
 const { Donacion, } = require("../db");
 const routerMp = Router();
 const { ACCESS_TOKEN } = process.env;
+const {donationGetHandler} = require("../handlers/donationHandler.js")
 
 routerMp.post("/", async (req, res) => {
 
@@ -36,7 +37,7 @@ routerMp.post("/", async (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then(async (response) => {
-      const result = await Donacion.create({ quantity, userEmail })
+      const result = await Donacion.create({ quantity, userEmail , price})
       res.json({ init_point: response.body.init_point, data: result });
     })
     .catch((error) => {
@@ -63,4 +64,5 @@ routerMp.post("/webhook", async (req, res) => {
   return res.sendStatus(200)
 });
 
+routerMp.get("/get", donationGetHandler)
 module.exports = routerMp;
