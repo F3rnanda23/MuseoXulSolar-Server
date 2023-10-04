@@ -44,12 +44,12 @@ const postActivity = async ({ date, name, image, description, hora }) => {
 const allActivity = async () => {
   const activities = await Actividades.findAll({
     include: [
-        {
-            model: Usuario,
-            attributes: ['id', `email`],
-        }
+      {
+        model: Usuario,
+        attributes: ['id', `email`],
+      }
     ],
-});
+  });
   return activities;
 }
 
@@ -64,8 +64,9 @@ const allActivityWithUsers = async () => {
     include: [
       {
         model: Usuario,
-        attributes: ['id', 'email',"name"], // Selecciona solo las propiedades 'id' y 'email' del modelo Usuario
+        attributes: ['id', 'email', "name"], // Selecciona solo las propiedades 'id' y 'email' del modelo Usuario
         through: 'reservas',
+        as: "Usuarios"
       },
     ],
     where: {
@@ -74,7 +75,7 @@ const allActivityWithUsers = async () => {
         [Sequelize.Op.between]: [currentDate, futureDate], // Filtra por fecha entre hoy y los próximos 7 días
       },
     },
-    attributes: ['date', 'name',"id", "hora"], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
+    attributes: ['date', 'name', "id", "hora"], // Selecciona solo las propiedades 'date' y 'name' del modelo Actividades
     // Aquí puedes agregar más opciones de consulta si es necesario
   });
 

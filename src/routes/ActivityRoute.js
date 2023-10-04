@@ -34,7 +34,7 @@ routerActivity.post("/reservar", async (req, res) => {
         }
 
         // Utiliza el método setUsuario para establecer la relación
-        await actividad.setUsuarios(usuario);
+        await actividad.addUsuario(usuario);
 
         return res.status(200).json({ message: "Reserva creada con éxito." });
     } catch (error) {
