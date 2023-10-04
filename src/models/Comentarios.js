@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
       },
       description: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       date: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
       },
       UsuarioId: {
         type: DataTypes.INTEGER, // Asegúrate de que el tipo de datos coincida con el tipo de la clave primaria en el modelo Usuario
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
       },
       rating: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type:DataTypes.STRING,
