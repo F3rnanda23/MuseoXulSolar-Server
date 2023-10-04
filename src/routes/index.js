@@ -7,10 +7,11 @@ const routerUsuario = require("./UsuarioRoute.js");
 const routerMp = require('./MercadoPagoRoute.js');
 const routeComentarios = require("./ComentariosRoute.js");
 const suscripcionRoute = require('./SuscripcionesRoute.js');
-const routePassword = require("./passwordRoute.js")
+const routePassword = require("./passwordRoute.js");
+const routeDonation = require("./donationsRoute.js");
 const router = Router();
 
-
+router.use("/donations", routeDonation);
 router.use("/password", routePassword);
 router.use('/pagar',routerMp);
 router.use("/actividades", routerActivity);
@@ -20,5 +21,6 @@ router.use("/patrocinios", PatrociniosRoute);
 router.use("/usuario", routerUsuario);
 router.use('/comentarios', routeComentarios);
 router.use('/suscripcion', suscripcionRoute);
+
 
 module.exports = router;

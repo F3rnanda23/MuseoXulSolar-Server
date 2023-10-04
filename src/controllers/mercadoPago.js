@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const mercadopago = require("mercadopago");
-const {sendEmailPago} = require("../nodemailer/nodemailerPago");
+const { idUser } = require("./UsuarioController");
 
 const { ACCESS_TOKEN } = process.env;
 
@@ -10,41 +10,47 @@ mercadopago.configure({
 });
 
 const pagar = async (req, res) => {
-  const {userEmail} = req.body;
+
+  const { tipo, date, usuarioId, subscripcion, email, name ,description , price , quantity} = req.body;
+  let user = await idUser(usuarioId)
+  if(!user)
+  return res.status(404).send("no existe usuario")
+  if(user && user.Suscripciones.length>0){
+    return res.status(400).send("usuario ya tiene suscripcion")
+  }
   const preference = {
     items: [
       {
-        title: req.body.description,
-        unit_price: Number(req.body.price),
-        quantity: Number(req.body.quantity),
-        currency_id: 'USD',
+        title: description,
+        unit_price: Number(price),
+        quantity: Number(quantity),
+        currency_id: "USD",
       },
     ],
     back_urls: {
       success: "https://client-xul-solar.vercel.app/",
       failure: "https://client-xul-solar.vercel.app/",
-      pending: "",
     },
-    auto_return: "approved",
+    notification_url:
+      "https://server-xul-solar.vercel.app/pagar/webhook",
+      metadata: {
+        tipo,
+        date,
+        usuarioId,
+        subscripcion,
+        email,
+        name,
+      },
   };
-
-  try {
-
-    const response = await mercadopago.preferences.create(preference);
-    console.log(response);
-    const init_point = response.body.init_point;
-    console.log(init_point);
-    const id = response.body.id;
-    console.log(id);
-    // Envía un correo electrónico cuando el pago es aprobado
-
-      await sendEmailPago(userEmail); // Asegúrate de proporcionar los datos necesarios a esta función si es necesario
-
-    res.status(200).json({ init_point, id });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error al crear referencia de pago" });
-  }
+  mercadopago.preferences
+    .create(preference)
+    .then((response) => {
+      res.json({ init_point: response.body.init_point });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: "Error al crear referencia de pago" });
+    });
 };
 
 module.exports = {

@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer")
 
 
 const sendEmailPago = async (user) => {
-    
+
     try {
         const config = {
             host: `smtp.gmail.com`,
