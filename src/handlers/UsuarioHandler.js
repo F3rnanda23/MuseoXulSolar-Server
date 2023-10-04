@@ -10,6 +10,7 @@ const {
     idUser
 } = require("../controllers/UsuarioController.js");
 const { sendEmail } = require("../nodemailer/nodemailer.js");
+const {sendEmailBlock} = require("../nodemailer/nodemailerBlocked");
 
 const bringUsers = async (req, res) => {
   try {
@@ -62,7 +63,9 @@ const loginUserHandler = async (req, res) => {
 const deleteUserLogic = async (req, res) => {
   const { id } = req.params;
   try {
+    const found = await idUser(id);
     const deleteUser = deleteLogicUser(id);
+    await sendEmailBlock(found.email);
     res.status(200).json(deleteUser);
   } catch (error) {
     res.status(404).json({ error: error.message });
