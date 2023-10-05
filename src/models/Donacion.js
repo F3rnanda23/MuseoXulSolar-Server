@@ -17,8 +17,8 @@ module.exports = (sequelize) => {
             allowNull: false, // Hacer que el campo no pueda ser nulo
             defaultValue: 'anonimo', // Establecer el valor predeterminado como 'anonimo'
         },
-        userId: {
-            type: DataTypes.INTEGER,
+        price: {
+            type: DataTypes.STRING,
             allowNull: true
         },
     },
