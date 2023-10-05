@@ -2,12 +2,13 @@ const { Usuario, Suscripciones, Comentarios, Actividades } = require("../db.js")
 
 //* libreria de hashing para las contraseñas;
 const bcrypt = require("bcrypt");
+const { Op } = require('sequelize');
 
 const createUsuario = async ({ birthday, name, phone, password, admin, email, suscripcion, image }) => {
     //* Hash de la contraseña antes de guardarla en la base de datos
     //* 10 es el numero de rondas de hashing
     const hashedPassword = await bcrypt.hash(password, 10)
-    const imagen = image? image : "https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Background-PNG-Clip-Art-Image.png"
+    const imagen = image ? image : "https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Background-PNG-Clip-Art-Image.png"
     const postUsuario = await Usuario.create({
         birthday,
         image: imagen,
@@ -56,7 +57,7 @@ const idUser = async (id) => {
             },
             {
                 model: Actividades,
-                attributes: ['description', 'date', "name","image","id","hora"],
+                attributes: ['description', 'date', "name", "image", "id", "hora"],
             },
         ],
     })
@@ -110,7 +111,7 @@ const loginUser = async (email, password) => {
 
     // Compara la contraseña proporcionada con la contraseña almacenada en la base de datos
     const passwordMatch = await bcrypt.compare(password, user.password);
-    const { id, name, admin} = user;
+    const { id, name, admin } = user;
     if (passwordMatch) {
         // La contraseña es válida, el usuario puede iniciar sesión
         return { success: true, email, id, name, admin };
@@ -142,8 +143,14 @@ const buscarEmailConGoolge = async (email) => {
     return userInfo;
 }
 
-const buscarEmaiBloqueado = async(email)=>{
-    const response = await Usuario.findOne({where: {email}});
+const buscarEmaiBloqueado = async (email) => {
+    const response = await Usuario.findAll({
+        where: {
+            email: {
+                [Op.eq]: email // Utiliza el operador de igualdad (eq) para comparar el correo electrónico
+            }
+        }
+    })
     return response;
 }
 

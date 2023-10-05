@@ -7,7 +7,8 @@ const {
     loginUser,
     buscarUsuarioPorEmail,
     buscarEmailConGoolge,
-    idUser
+    idUser,
+    buscarEmaiBloqueado
 } = require("../controllers/UsuarioController.js");
 const { sendEmail } = require("../nodemailer/nodemailer.js");
 const {sendEmailBlock} = require("../nodemailer/nodemailerBlocked");
@@ -157,6 +158,16 @@ const handleLoginGoogle = async (req, res) => {
         console.error("Error en el inicio de sesión con Google:", error);
         res.status(500).json({ success: false, message: "Error en el inicio de sesión con Google" });
     }
+};
+
+const buscarEmailRegister = async(req,res)=>{
+  const {email} = req.params;
+  try {
+    const response = await buscarEmaiBloqueado(email);
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(404).json({error: error.message});
+  }
 }
 
 module.exports = {
@@ -167,5 +178,6 @@ module.exports = {
   editarUsuario,
   handleLogin,
   handleLoginGoogle,
-  searchIdUser
+  searchIdUser,
+  buscarEmailRegister
 };

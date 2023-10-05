@@ -7,7 +7,8 @@ const {
     editarUsuario,
     handleLogin,
     handleLoginGoogle,
-    searchIdUser
+    searchIdUser,
+    buscarEmailRegister
 } = require("../handlers/UsuarioHandler.js");
 const { buscarEmaiBloqueado } = require("../controllers/UsuarioController")
 const routerUsuario = Router();
@@ -25,7 +26,7 @@ routerUsuario.get("/email/:email", async (req, res) => {
     try {
       const userEmail = await buscarEmaiBloqueado(email);
       // Verifica si el usuario está bloqueado
-      if (userEmail === null) {
+      if (!userEmail.length) {
         res.status(201).send("bloqueado"); // El usuario está bloqueado
       } else {
         res.status(200).send("no_bloqueado"); // El usuario no está bloqueado
@@ -34,7 +35,7 @@ routerUsuario.get("/email/:email", async (req, res) => {
       res.status(404).json({ error: error.message });
     }
   });
-  
+routerUsuario.get("/buscar/:email",buscarEmailRegister);
 
 
 module.exports = routerUsuario;
